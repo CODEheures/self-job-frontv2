@@ -18,7 +18,7 @@ module.exports = {
       { src: 'https://use.fontawesome.com/releases/v5.0.13/js/all.js', integrity: 'sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe', crossorigin: 'anonymous', defer: true, body: true }
     ]
   },
-  plugins: ['~/plugins/vuetify.js', '~/plugins/api.js'],
+  plugins: ['~/plugins/vuetify.js', '~/plugins/api.js', '~/plugins/i18n.js'],
   css: [
     '~/assets/style/app.styl'
   ],
@@ -27,12 +27,19 @@ module.exports = {
   */
   loading: { color: '#3B8070' },
   /*
+  ** Router
+   */
+  router: {
+    middleware: 'i18n'
+  },
+  /*
   ** Build configuration
   */
   build: {
     vendor: [
       '~/plugins/vuetify.js',
       '~/plugins/api.js',
+      'vue-i18n',
       'axios'
     ],
     extractCSS: true,
@@ -57,6 +64,7 @@ module.exports = {
   env: {
     api: {
       href: 'http://localhost:8000'
-    }
+    },
+    fallbackLocale: 'fr'
   }
 }
