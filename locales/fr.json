@@ -1,5 +1,15 @@
 {
   "home": {
-    "title": "Bonjour les amis"
+    "title": "SelfJob, le recrutement sans CV",
+    "search": {
+      "title": "Trouver des annonces",
+      "helper": "Choisissez un lieu, un rayon de recherche et entrez des mots clés pour trouvez vos annonces",
+      "place": "lieu",
+      "distance": "rayon de recherche",
+      "searchs": {
+        "label": "entrez votre recherche ex: barman, débutant"
+      },
+      "button": "rechercher"
+    }
   }
 }
