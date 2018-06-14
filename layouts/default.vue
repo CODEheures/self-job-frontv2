@@ -91,3 +91,10 @@
     }
   }
 </script>
+
+<style lang="stylus">
+  main.content > .content--wrap
+    display:flex
+    flex-flow row wrap
+    align-content: space-between
+</style>
