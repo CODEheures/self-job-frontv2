@@ -7,7 +7,7 @@
       "place": "lieu",
       "distance": "rayon de recherche",
       "searchs": {
-        "label": "entrez votre recherche ex: barman, débutant"
+        "label": "ajouter des termes de recherche ex: barman, débutant"
       },
       "button": "rechercher"
     }

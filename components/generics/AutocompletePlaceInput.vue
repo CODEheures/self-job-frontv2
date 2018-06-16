@@ -1,15 +1,11 @@
 <!--
   This component displayed an autocomplete place input
-  Props:
-  Events:
-    @newPlace:
-      When: input place change
-      What: emit place object
+  V-model: Object
 -->
 <template>
   <v-text-field
     ref="place"
-    v-model="place"
+    v-model="formattedAddress"
     required
     clearable
     :label="$t('home.search.place')"
@@ -21,10 +17,19 @@
 <script>
   import { PlacesAutocomplete } from '~/plugins/placesAutocomplete.js'
   export default {
+    model: {
+      prop: 'place',
+      event: 'change'
+    },
+    props: {
+      place: {
+        type: Object
+      }
+    },
     data () {
       return {
         googleResponse: {},
-        place: ''
+        formattedAddress: ''
       }
     },
     mounted () {
@@ -53,16 +58,16 @@
       setPlace (event) {
         // When choice in autocomplete
         this.googleResponse = event.detail
-        this.place = this.googleResponse.formatted_address
-        this.$emit('newPlace', this.googleResponse)
+        this.formattedAddress = this.googleResponse.formatted_address
+        this.$emit('change', this.googleResponse)
       },
       testChange (event) {
         // Emit empty place if empty input
-        if (event.target.value === undefined || event.target.value === null || event.target.value === '') { this.$emit('newPlace', {}) }
+        if (event.target.value === undefined || event.target.value === null || event.target.value === '') { this.$emit('change', {}) }
       },
       restore (event) {
         // restore google value if input not empty and value not match
-        if (this.place !== undefined && this.place !== null && this.place.length > 0 && this.place !== this.googleResponse.formatted_address) { this.place = this.googleResponse.formatted_address }
+        if (this.formattedAddress !== undefined && this.formattedAddress !== null && this.formattedAddress.length > 0 && this.formattedAddress !== this.googleResponse.formatted_address) { this.formattedAddress = this.googleResponse.formatted_address }
       }
     }
   }

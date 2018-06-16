@@ -47,7 +47,8 @@ module.exports = {
       '~/plugins/loaderJs.js',
       '~/plugins/placesAutocomplete.js',
       'vue-i18n',
-      'axios'
+      'axios',
+      'lodash'
     ],
     extractCSS: true,
     /*

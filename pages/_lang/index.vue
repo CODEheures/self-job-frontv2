@@ -13,29 +13,9 @@
         <v-card-title class="headline">{{ $t('home.search.title') }}</v-card-title>
         <v-card-text>
           <p>{{ $t('home.search.helper') }}</p>
-          <autocomplete-place-input @newPlace="place=$event" />
-          <v-slider v-model="media" prepend-icon="360" max="250" ticks step="10" thumb-label validate-on-blur id="slide-distance"></v-slider>
-          <v-select
-            v-model="searchs"
-            :label="$t('home.search.searchs.label')"
-            chips
-            tags
-            solo
-            prepend-icon="format_list_bulleted"
-            clearable
-          >
-            <template slot="selection" slot-scope="data">
-              <v-chip
-                :selected="data.selected"
-                close
-                @input="remove(data.item)"
-                color="primary"
-                outline
-              >
-                <strong>{{ data.item }}</strong>
-              </v-chip>
-            </template>
-          </v-select>
+          <autocomplete-place-input v-model="place" />
+          <v-slider v-model="mileage" prepend-icon="360" max="250" ticks step="10" thumb-label validate-on-blur id="slide-distance"></v-slider>
+          <editable-chips-list v-model="searchs"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -48,9 +28,11 @@
 
 <script>
   import AutocompletePlaceInput from '~/components/generics/AutocompletePlaceInput'
+  import EditableChipsList from '~/components/generics/EditableChipsList'
   export default {
     components: {
-      AutocompletePlaceInput
+      AutocompletePlaceInput,
+      EditableChipsList
     },
     asyncData (ctx) {
       return {
@@ -66,7 +48,7 @@
     },
     data () {
       return {
-        media: 0,
+        mileage: 0,
         searchs: [],
         place: {}
       }
@@ -75,12 +57,6 @@
       if (process.client) {
         // Place text after slider
         document.querySelector('#slide-distance .input-group__input .slider').dataset.after = this.$t('home.search.distance')
-      }
-    },
-    methods: {
-      remove (item) {
-        this.searchs.splice(this.searchs.indexOf(item), 1)
-        this.searchs = [...this.searchs]
       }
     }
   }
