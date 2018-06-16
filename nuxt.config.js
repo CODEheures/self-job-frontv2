@@ -71,7 +71,7 @@ module.exports = {
    */
   env: {
     api: {
-      href: 'http://localhost:8000'
+      href: 'http://api.selfjob.test/api'
     },
     fallbackLocale: 'fr'
   }

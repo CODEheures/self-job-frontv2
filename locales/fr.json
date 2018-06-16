@@ -9,7 +9,9 @@
       "searchs": {
         "label": "ajouter des termes de recherche ex: barman, débutant"
       },
-      "button": "rechercher"
+      "button": "rechercher",
+      "errorApi": "Désolé le serveur ne répond pas",
+      "zeroResult": "Aucun résultat ne correspond à votre demande"
     }
   }
 }

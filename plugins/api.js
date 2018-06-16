@@ -37,7 +37,7 @@ const Api = {
   listRoutes () {
     return routes
   },
-  async register (name, email, password, passwordConfirmation, language) {
+  register (name, email, password, passwordConfirmation, language) {
     return axios.request({
       method: 'post',
       url: routes.register,
@@ -47,7 +47,7 @@ const Api = {
       }
     })
   },
-  async resetPassword (email, language) {
+  resetPassword (email, language) {
     return axios.request({
       method: 'post',
       url: routes.resetPassword,
@@ -57,7 +57,7 @@ const Api = {
       }
     })
   },
-  async updatePassword (password, passwordConfirmation) {
+  updatePassword (password, passwordConfirmation) {
     return axios.request({
       method: 'put',
       url: routes.updatePassword,
@@ -68,7 +68,7 @@ const Api = {
       }
     })
   },
-  async login (email, password, language) {
+  login (email, password, language) {
     return axios.request({
       method: 'post',
       url: routes.login,
@@ -78,7 +78,7 @@ const Api = {
       }
     })
   },
-  async logout () {
+  logout () {
     return axios.request({
       method: 'post',
       url: routes.logout,
@@ -88,7 +88,7 @@ const Api = {
       }
     })
   },
-  async invite (email) {
+  invite (email) {
     return axios.request({
       method: 'post',
       url: routes.invite,
@@ -99,7 +99,7 @@ const Api = {
       }
     })
   },
-  async existUser (email) {
+  existUser (email) {
     return axios.request({
       method: 'get',
       url: routes.existUser,
@@ -111,7 +111,7 @@ const Api = {
       }
     })
   },
-  async isInvitedAndFreeUser (email) {
+  isInvitedAndFreeUser (email) {
     return axios.request({
       method: 'get',
       url: routes.isInvitedAndFreeUser,
@@ -123,7 +123,7 @@ const Api = {
       }
     })
   },
-  async getUser () {
+  getUser () {
     return axios.request({
       method: 'get',
       url: routes.user,
@@ -133,7 +133,7 @@ const Api = {
       }
     })
   },
-  async getColleagues () {
+  getColleagues () {
     return axios.request({
       method: 'get',
       url: routes.colleagues,
@@ -143,7 +143,7 @@ const Api = {
       }
     })
   },
-  async postUserProperty (property, value) {
+  postUserProperty (property, value) {
     return axios.request({
       method: 'post',
       url: routes.setUserProperty,
@@ -157,7 +157,7 @@ const Api = {
       }
     })
   },
-  async postAdvert (advert, questions, language) {
+  postAdvert (advert, questions, language) {
     return axios.request({
       method: 'post',
       url: routes.postAdvert,
@@ -172,7 +172,7 @@ const Api = {
       }
     })
   },
-  async publishAdvert (id, publish) {
+  publishAdvert (id, publish) {
     return axios.request({
       method: 'put',
       url: routes.publishAdvert,
@@ -186,7 +186,7 @@ const Api = {
       }
     })
   },
-  async deleteAdvert (id) {
+  deleteAdvert (id) {
     return axios.request({
       method: 'delete',
       url: routes.deleteAdvert,
@@ -199,7 +199,7 @@ const Api = {
       }
     })
   },
-  async getAdverts (searchs, location, mileage, fromResult, language) {
+  getAdverts (searchs, location, mileage, fromResult, language) {
     return axios.request({
       method: 'post',
       url: routes.getAdverts,
@@ -218,7 +218,7 @@ const Api = {
       }
     })
   },
-  async showAdvert (id) {
+  showAdvert (id) {
     return axios.request({
       method: 'get',
       url: routes.showAdvert + id,
@@ -227,7 +227,7 @@ const Api = {
       }
     })
   },
-  async showQuiz (id) {
+  showQuiz (id) {
     return axios.request({
       method: 'get',
       url: routes.showQuiz + id,
@@ -236,7 +236,7 @@ const Api = {
       }
     })
   },
-  async sendQuizAnswers (id, email, phone, answers) {
+  sendQuizAnswers (id, email, phone, answers) {
     return axios.request({
       method: 'post',
       url: routes.sendQuizAnswers,
@@ -251,7 +251,7 @@ const Api = {
       }
     })
   },
-  async getMyAdverts () {
+  getMyAdverts () {
     return axios.request({
       method: 'get',
       url: routes.getMyAdverts,
@@ -261,7 +261,7 @@ const Api = {
       }
     })
   },
-  async getAdvertAnswers (id) {
+  getAdvertAnswers (id) {
     return axios.request({
       method: 'get',
       url: routes.getAdvertAnswers + id,
@@ -271,7 +271,7 @@ const Api = {
       }
     })
   },
-  async delPicture (url) {
+  delPicture (url) {
     return axios.request({
       method: 'delete',
       url: routes.delPicture,
@@ -284,7 +284,7 @@ const Api = {
       }
     })
   },
-  async getQuestionsLibrary (language) {
+  getQuestionsLibrary (language) {
     return axios.request({
       method: 'get',
       url: routes.getQuestionsLibrary,
@@ -297,7 +297,7 @@ const Api = {
       }
     })
   },
-  async removeOfLibrary (hash) {
+  removeOfLibrary (hash) {
     return axios.request({
       method: 'put',
       url: routes.removeOfLibrary,
@@ -310,7 +310,7 @@ const Api = {
       }
     })
   },
-  async changeQuestionLibraryType (hash, type) {
+  changeQuestionLibraryType (hash, type) {
     return axios.request({
       method: 'put',
       url: routes.changeQuestionLibraryType,
