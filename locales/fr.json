@@ -1,4 +1,7 @@
 {
+  "generics": {
+    "close": "fermer"
+  },
   "home": {
     "title": "SelfJob, le recrutement sans CV",
     "search": {

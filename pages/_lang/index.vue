@@ -11,7 +11,7 @@
       v-model="snackBar.display"
     >
       {{ snackBar.text }}
-      <v-btn flat color="pink" @click.native="snackbar.display = false">Close</v-btn>
+      <v-btn flat color="pink" @click.native="snackBar.display = false">{{ $t('generics.close')}}</v-btn>
     </v-snackbar>
     <v-flex xs12 sm8 md6>
       <div class="text-xs-center">
