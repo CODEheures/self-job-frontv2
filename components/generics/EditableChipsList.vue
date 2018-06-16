@@ -58,9 +58,6 @@
         this.dataList.splice(this.dataList.indexOf(item), 1)
         this.dataList = [...this.dataList]
         this.updateList()
-      },
-      blurChips (event) {
-        console.log('blur chips', event.target.value)
       }
     }
   }
