@@ -18,7 +18,12 @@ module.exports = {
       { src: 'https://use.fontawesome.com/releases/v5.0.13/js/all.js', integrity: 'sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe', crossorigin: 'anonymous', defer: true, body: true }
     ]
   },
-  plugins: ['~/plugins/vuetify.js', '~/plugins/api.js', '~/plugins/i18n.js'],
+  plugins: [
+    '~/plugins/vuetify.js',
+    '~/plugins/api.js',
+    '~/plugins/i18n.js',
+    {src: '~/plugins/placesAutocomplete.js', ssr: false}
+  ],
   css: [
     '~/assets/style/app.styl'
   ],
@@ -39,6 +44,8 @@ module.exports = {
     vendor: [
       '~/plugins/vuetify.js',
       '~/plugins/api.js',
+      '~/plugins/loaderJs.js',
+      '~/plugins/placesAutocomplete.js',
       'vue-i18n',
       'axios'
     ],

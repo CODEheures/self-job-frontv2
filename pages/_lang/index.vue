@@ -1,3 +1,8 @@
+<!--
+  This page display searchCard with locality center, distance and keyword
+  Call API on btn search click.
+  Call next route if API result is not empty
+-->
 <template>
   <v-layout column justify-center align-center>
     <v-flex xs12 sm8 md6>
@@ -8,8 +13,7 @@
         <v-card-title class="headline">{{ $t('home.search.title') }}</v-card-title>
         <v-card-text>
           <p>{{ $t('home.search.helper') }}</p>
-          <hr class="my-3">
-          <v-text-field id="place" name="place" :label="$t('home.search.place')" prepend-icon="place"/>
+          <autocomplete-place-input @newPlace="place=$event" />
           <v-slider v-model="media" prepend-icon="360" max="250" ticks step="10" thumb-label validate-on-blur id="slide-distance"></v-slider>
           <v-select
             v-model="searchs"
@@ -35,7 +39,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" flat nuxt to="/inspire">{{ $t('home.search.button') }}</v-btn>
+          <v-btn color="primary" flat @click="" :disabled="!isComplete">{{ $t('home.search.button') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -43,21 +47,33 @@
 </template>
 
 <script>
-  // import Api from '~/plugins/api'
+  import AutocompletePlaceInput from '~/components/generics/AutocompletePlaceInput'
   export default {
+    components: {
+      AutocompletePlaceInput
+    },
     asyncData (ctx) {
       return {
         // apiDomain: Api.listRoutes()
       }
     },
+    computed: {
+      isComplete () {
+        return 'geometry' in this.place &&
+          'location' in this.place.geometry &&
+          this.searchs.length > 0
+      }
+    },
     data () {
       return {
         media: 0,
-        searchs: []
+        searchs: [],
+        place: {}
       }
     },
     mounted () {
       if (process.client) {
+        // Place text after slider
         document.querySelector('#slide-distance .input-group__input .slider').dataset.after = this.$t('home.search.distance')
       }
     },
