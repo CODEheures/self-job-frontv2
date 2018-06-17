@@ -1,6 +1,7 @@
 {
   "generics": {
-    "close": "fermer"
+    "close": "fermer",
+    "see": "voir"
   },
   "home": {
     "title": "SelfJob, le recrutement sans CV",
@@ -10,7 +11,7 @@
       "place": "lieu",
       "distance": "rayon de recherche",
       "searchs": {
-        "label": "ajouter des termes de recherche ex: barman, débutant"
+        "label": "ajouter des recherches ex: barman, débutant"
       },
       "button": "rechercher",
       "errorApi": "Désolé le serveur ne répond pas",

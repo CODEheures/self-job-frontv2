@@ -30,12 +30,24 @@ module.exports = {
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  loading: '~/components/generics/loading.vue',
   /*
   ** Router
    */
   router: {
-    middleware: 'i18n'
+    middleware: 'i18n',
+    parseQuery: function (query) {
+      if (query.length > 0) {
+        return JSON.parse(decodeURI(query))
+      }
+      return {}
+    },
+    stringifyQuery: function (query) {
+      if (Object.keys(query).length > 0) {
+        return '?' + encodeURI(JSON.stringify(query))
+      }
+      return ''
+    }
   },
   /*
   ** Build configuration
@@ -48,7 +60,8 @@ module.exports = {
       '~/plugins/placesAutocomplete.js',
       'vue-i18n',
       'axios',
-      'lodash'
+      'lodash',
+      'moment'
     ],
     extractCSS: true,
     /*

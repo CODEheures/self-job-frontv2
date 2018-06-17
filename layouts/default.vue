@@ -37,9 +37,9 @@
     </v-navigation-drawer>
     <v-toolbar fixed app>
       <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <!--<v-btn icon @click.stop="fixed = !fixed">-->
-        <!--<v-icon>remove</v-icon>-->
-      <!--</v-btn>-->
+      <v-btn icon @click="goBack" v-show="$route.name !== 'index'">
+        <v-icon>navigate_before</v-icon>
+      </v-btn>
       <v-toolbar-title v-text="title"></v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
@@ -87,6 +87,11 @@
           { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
         ],
         icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram']
+      }
+    },
+    methods: {
+      goBack () {
+        this.$router.go(-1)
       }
     }
   }
