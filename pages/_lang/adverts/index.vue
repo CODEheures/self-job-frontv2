@@ -23,20 +23,22 @@
         <v-flex v-for="advert,index in adverts" :key="advert.id" xs12 md6 xl4>
           <v-card>
             <v-card-title>
-              <h3 class="headline mb-0">{{ advert.title | capitalize }}</h3>
+              <span><v-icon>business</v-icon> {{ advert.company.name | capitalize }}</span>
               <v-spacer></v-spacer>
               <div>
-                <span><v-icon>business</v-icon> {{ advert.company.name | capitalize }}</span><br />
                 <span><v-icon>360</v-icon> {{ advert.mileage }}Km</span><br />
                 <span><v-icon>schedule</v-icon> {{ formatMyDate(advert.created) }}</span>
               </div>
             </v-card-title>
             <v-card-title primary-title>
-              <div>{{ advert.description.slice(0,90) + '...' | capitalize }}</div>
+              <div>
+                <h3 class="headline mb-0">{{ advert.title | capitalize }}</h3>
+                <p>{{ advert.description.slice(0,90) + '...' | capitalize }}</p>
+              </div>
             </v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn flat color="orange">{{ $t('generics.see') }}</v-btn>
+              <v-btn flat color="orange" nuxt :to="{name: 'advert-id', params: {id: advert.id}}">{{ $t('generics.see') }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>
@@ -91,7 +93,6 @@
             this.snackBar.display = true
           }
         } catch (e) {
-          console.log(e)
           this.$root.$emit('xhr', false)
           this.snackBar.text = this.$t('home.search.errorApi')
           this.snackBar.display = true
