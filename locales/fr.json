@@ -20,5 +20,11 @@
       "errorApi": "Désolé le serveur ne répond pas",
       "zeroResult": "Aucun résultat ne correspond à votre demande"
     }
+  },
+  "advert": {
+    "requirements": "éxigences",
+    "allUnchecked": "En ne cochant pas toutes les cases je déclare ne pas possèder toutes les exigences requises et ne peux continuer",
+    "allChecked": "J'ai coché toutes les cases et je déclare posséder toutes les exigences requises pour continuer",
+    "button": "Accéder au questionnaire"
   }
 }

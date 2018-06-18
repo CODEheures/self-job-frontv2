@@ -4,7 +4,7 @@
   Call next route if API result is not empty
 -->
 <template>
-  <v-layout column justify-center align-center>
+  <v-layout justify-center align-center>
     <v-snackbar
       :timeout="6000"
       top
@@ -20,7 +20,7 @@
             <img src="~/assets/images/logonb.png" alt="Vuetify.js" class="mb-5" />
           </div>
         </v-flex>
-        <v-flex v-for="advert,index in adverts" :key="advert.id" xs12 md6 xl4>
+        <v-flex v-for="advert,index in adverts" :key="advert.id" xs12 md6 lg4 xl3>
           <v-card>
             <v-card-title>
               <span><v-icon>business</v-icon> {{ advert.company.name | capitalize }}</span>
