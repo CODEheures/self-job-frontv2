@@ -3,6 +3,9 @@
     "close": "fermer",
     "see": "voir"
   },
+  "footer": {
+    "description": "SelfJob, le recrutement sans CV #savoirFaire #savoirÊtre"
+  },
   "home": {
     "title": "SelfJob, le recrutement sans CV",
     "search": {
