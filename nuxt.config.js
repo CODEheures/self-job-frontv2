@@ -86,6 +86,7 @@ module.exports = {
     api: {
       href: process.env.isDev === 'true' ? 'http://api.selfjob.test/api' : 'https://api-selfjob.codeheures.fr/api'
     },
-    fallbackLocale: 'fr'
+    fallbackLocale: 'fr',
+    googleMapApiKey: process.env.isDev === 'true' ? '' : 'AIzaSyB6YONdutLGDWC70gK9f3VZp_3_eIE7Alw'
   }
 }

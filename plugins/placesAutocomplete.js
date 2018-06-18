@@ -7,7 +7,7 @@ import LoaderJs from '~/plugins/loaderJs.js'
 class PlacesAutocomplete {
   constructor (elem) {
     if (process.client) {
-      LoaderJs('https://maps.googleapis.com/maps/api/js?libraries=places', function () {
+      LoaderJs('https://maps.googleapis.com/maps/api/js?libraries=places' + (process.env.googleMapApiKey.length > 0 ? '&key=' + process.env.googleMapApiKey : ''), function () {
         let _input = elem
         let _options = {
           types: ['(regions)']
