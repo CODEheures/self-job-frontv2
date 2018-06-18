@@ -84,7 +84,7 @@ module.exports = {
    */
   env: {
     api: {
-      href: 'http://api.selfjob.test/api'
+      href: process.env.isDev === 'true' ? 'http://api.selfjob.test/api' : 'https://api-selfjob.codeheures.fr/api'
     },
     fallbackLocale: 'fr'
   }
