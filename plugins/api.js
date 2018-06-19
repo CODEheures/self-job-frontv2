@@ -31,7 +31,7 @@ const routes = {
   changeQuestionLibraryType: apiDomain + '/question/library/type'
 }
 
-axios.defaults.timeout = 3000
+axios.defaults.timeout = 5000
 
 const Api = {
   listRoutes () {

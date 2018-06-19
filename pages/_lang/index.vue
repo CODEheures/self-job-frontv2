@@ -13,7 +13,7 @@
         <v-card-text>
           <p>{{ $t('home.search.helper') }}</p>
           <autocomplete-place-input v-model="place" />
-          <v-slider v-model="mileage" prepend-icon="360" :max="mileageStop" ticks step="10" thumb-label validate-on-blur id="slide-distance"></v-slider>
+          <v-slider v-model="mileage" prepend-icon="360" :min="10" :max="mileageStop" ticks step="10" thumb-label validate-on-blur id="slide-distance"></v-slider>
           <editable-chips-list v-model="searchs"/>
         </v-card-text>
         <v-card-actions>
@@ -37,8 +37,7 @@
     computed: {
       isComplete () {
         return 'geometry' in this.place &&
-          'location' in this.place.geometry &&
-          this.searchs.length > 0
+          'location' in this.place.geometry
       }
     },
     data () {
