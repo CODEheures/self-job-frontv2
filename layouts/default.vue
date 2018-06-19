@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer :mini-variant.sync="miniVariant" v-model="drawer" fixed app>
+    <v-navigation-drawer :mobile-break-point="mobileBreakPoint" :mini-variant.sync="miniVariant" v-model="drawer" fixed app>
       <v-toolbar flat class="transparent">
         <v-list class="pa-0">
           <v-list-tile avatar>
@@ -80,14 +80,20 @@
   export default {
     data () {
       return {
-        drawer: true,
+        drawer: false,
         miniVariant: true,
+        mobileBreakPoint: 960,
         title: 'SelfJob',
         items: [
           { icon: 'apps', title: 'Welcome', to: '/' },
           { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
         ],
         icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram']
+      }
+    },
+    mounted () {
+      if (process.client) {
+        this.drawer = this.$vuetify.breakpoint.mdAndUp
       }
     },
     methods: {
