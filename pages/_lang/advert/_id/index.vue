@@ -11,7 +11,7 @@
       {{ snackBar.text }}
       <v-btn flat color="pink" @click.native="snackBar.display = false">{{ $t('generics.close')}}</v-btn>
     </v-snackbar>
-    <v-flex xs12 sm8 md4>
+    <v-flex xs12 sm10 md8>
       <v-card v-if="advert !== undefined" class="elevation-12">
         <v-card-title primary-title>
           <h3 class="headline mb-0">{{ advert.title | capitalize }}</h3>
