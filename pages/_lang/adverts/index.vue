@@ -13,7 +13,7 @@
       {{ snackBar.text }}
       <v-btn flat color="pink" @click.native="snackBar.display = false">{{ $t('generics.close')}}</v-btn>
     </v-snackbar>
-    <v-container fluid grid-list-lg>
+    <v-container fluid grid-list-lg pa-0>
       <v-layout row wrap>
         <v-flex xs12 v-show="adverts.length === 0">
           <div class="text-xs-center">
@@ -22,20 +22,30 @@
         </v-flex>
         <v-flex v-for="advert,index in adverts" :key="advert.id" xs12 md6 lg4 xl3>
           <v-card>
-            <v-card-title>
-              <span><v-icon>business</v-icon> {{ advert.company.name | capitalize }}</span>
+            <v-card-title primary-title class="indigo">
+              <h3 class="headline mb-0 white--text">{{ advert.title | capitalize }} &#0149 {{ advert.contract | uppercase }}</h3>
               <v-spacer></v-spacer>
-              <div>
-                <span><v-icon>360</v-icon> {{ advert.mileage }}Km</span><br />
-                <span><v-icon>schedule</v-icon> {{ formatMyDate(advert.created) }}</span>
+              <div class="hidden-sm-and-up caption white--text">
+                <v-icon color="white">place</v-icon> {{ advert.formatted_address }}
               </div>
             </v-card-title>
-            <v-card-title primary-title>
+            <v-card-title>
               <div>
-                <h3 class="headline mb-0">{{ advert.title | capitalize }}</h3>
-                <p>{{ advert.description.slice(0,90) + '...' | capitalize }}</p>
+                <v-avatar tile size="75">
+                  <img src="~/assets/images/logonb.png" />
+                </v-avatar>
+                <div class="caption">{{ advert.company.name | capitalize }}</div>
+              </div>
+              <v-spacer></v-spacer>
+              <div class="text-xs-right caption grey--text text--lighten-1">
+                <span class="hidden-xs-only">{{ advert.formatted_address }} <v-icon>place</v-icon><br /></span>
+                <span>{{ advert.mileage }}Km <v-icon>360</v-icon></span><br />
+                <span>{{ formatMyDate(advert.created) }} <v-icon>schedule</v-icon></span>
               </div>
             </v-card-title>
+            <v-card-text>
+              <p>{{ advert.description.slice(0,90) + '...' | capitalize }}</p>
+            </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn flat color="orange" nuxt :to="{name: 'advert-id', params: {id: advert.id}}">{{ $t('generics.see') }}</v-btn>
@@ -68,6 +78,11 @@
         if (!value) return ''
         value = value.toString()
         return value.charAt(0).toUpperCase() + value.slice(1)
+      },
+      uppercase: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.toUpperCase()
       }
     },
     mounted () {

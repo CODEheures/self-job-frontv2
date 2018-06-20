@@ -13,15 +13,24 @@
     </v-snackbar>
     <v-flex xs12 sm10 md6 lg4>
       <v-card v-if="advert !== undefined" class="elevation-12">
-        <v-card-title primary-title>
-          <h3 class="headline mb-0">{{ advert.title | capitalize }}</h3>
+        <v-card-title primary-title class="indigo">
+          <h3 class="headline mb-0 white--text">{{ advert.title | capitalize }} &#0149 {{ advert.contract | uppercase}}</h3>
+          <v-spacer></v-spacer>
+          <div class="caption white--text">
+            <v-icon color="white">place</v-icon> {{ advert.formatted_address }}
+          </div>
         </v-card-title>
         <v-card-title>
-          <span><v-icon>business</v-icon> {{ advert.company.name | capitalize }}</span>
-          <v-spacer></v-spacer>
           <div>
-            <span><v-icon>360</v-icon> {{ advert.mileage }}Km</span><br />
-            <span><v-icon>schedule</v-icon> {{ formatMyDate(advert.created_at) }}</span>
+            <v-avatar tile size="75">
+              <img src="~/assets/images/logonb.png" />
+            </v-avatar>
+            <div class="caption">{{ advert.company.name | capitalize }}</div>
+          </div>
+          <v-spacer></v-spacer>
+          <div class="text-xs-right caption grey--text text--lighten-1">
+            <span>{{ advert.mileage }}Km <v-icon>360</v-icon></span><br />
+            <span>{{ formatMyDate(advert.created_at) }} <v-icon>schedule</v-icon></span>
           </div>
         </v-card-title>
         <v-card-media ref="mediaCard" v-if="advert.pictureUrl" :src="advert.pictureUrl" :height="heightMediaCard + 'px'" v-resize="onResize"></v-card-media>
@@ -89,6 +98,11 @@
         if (!value) return ''
         value = value.toString()
         return value.charAt(0).toUpperCase() + value.slice(1)
+      },
+      uppercase: function (value) {
+        if (!value) return ''
+        value = value.toString()
+        return value.toUpperCase()
       }
     },
     mounted () {

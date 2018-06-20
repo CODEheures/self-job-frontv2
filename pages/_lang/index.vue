@@ -14,7 +14,7 @@
           <p>{{ $t('home.search.helper') }}</p>
           <autocomplete-place-input v-model="place" />
           <v-slider v-model="mileage" prepend-icon="360" :min="10" :max="mileageStop" ticks step="10" thumb-label validate-on-blur id="slide-distance"></v-slider>
-          <editable-chips-list v-model="searchs"/>
+          <editable-chips-list v-model="searchs" @progress="progressChips = $event"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
@@ -28,6 +28,7 @@
 <script>
   import AutocompletePlaceInput from '~/components/generics/AutocompletePlaceInput'
   import EditableChipsList from '~/components/generics/EditableChipsList'
+  import _ from 'lodash'
 
   export default {
     components: {
@@ -45,7 +46,8 @@
         mileage: 0,
         mileageStop: 250,
         searchs: [],
-        place: {}
+        place: {},
+        progressChips: null
       }
     },
     mounted () {
@@ -57,7 +59,7 @@
     methods: {
       toResults () {
         let params = {
-          'searchs': this.searchs,
+          'searchs': this.progressChips !== null ? _.uniq((this.searchs).concat(this.progressChips)) : this.searchs,
           'position': {latitude: this.place.geometry.location.lat(), longitude: this.place.geometry.location.lng()},
           'mileage': {min: 0, max: this.mileage, stop: this.mileageStop}
         }

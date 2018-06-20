@@ -1,6 +1,8 @@
 <!--
   This component displayed an editable list of chips
   V-model: Array
+  Events:
+    - @progress: value of the input before validate it on chips
 -->
 <template>
   <v-select
@@ -12,6 +14,7 @@
     prepend-icon="format_list_bulleted"
     clearable
     @input="updateList"
+    @update:searchInput="$emit('progress', $event)"
   >
     <template slot="selection" slot-scope="data">
       <v-chip
