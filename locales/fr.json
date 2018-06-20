@@ -23,7 +23,7 @@
   },
   "advert": {
     "requirements": "éxigences",
-    "allUnchecked": "En ne cochant pas toutes les cases je déclare ne pas possèder toutes les exigences requises et ne peux continuer",
+    "allUnchecked": "Cochez toutes les éxigences pour acceder au questionnaire",
     "allChecked": "J'ai coché toutes les cases et je déclare posséder toutes les exigences requises pour continuer",
     "button": "Accéder au questionnaire"
   }
