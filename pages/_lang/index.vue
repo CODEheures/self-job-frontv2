@@ -12,7 +12,7 @@
         <v-card-title class="headline">{{ $t('home.search.title') }}</v-card-title>
         <v-card-text>
           <p>{{ $t('home.search.helper') }}</p>
-          <autocomplete-place-input v-model="place" />
+          <autocomplete-mapbox-input v-model="place" />
           <v-slider v-model="mileage" prepend-icon="360" :min="10" :max="mileageStop" ticks step="10" thumb-label validate-on-blur id="slide-distance"></v-slider>
           <editable-chips-list v-model="searchs" @progress="progressChips = $event"/>
         </v-card-text>
@@ -26,19 +26,21 @@
 </template>
 
 <script>
-  import AutocompletePlaceInput from '~/components/generics/AutocompletePlaceInput'
+  import AutocompleteGoogleplaceInput from '~/components/generics/AutocompleteGoogleplaceInput'
+  import AutocompleteMapboxInput from '~/components/generics/AutocompleteMapboxInput'
   import EditableChipsList from '~/components/generics/EditableChipsList'
   import _ from 'lodash'
-
   export default {
     components: {
-      AutocompletePlaceInput,
+      AutocompleteGoogleplaceInput,
+      AutocompleteMapboxInput,
       EditableChipsList
     },
     computed: {
       isComplete () {
-        return 'geometry' in this.place &&
-          'location' in this.place.geometry
+        // return 'geometry' in this.place &&
+        //   'location' in this.place.geometry
+        return 'coords' in this.place
       }
     },
     data () {
@@ -58,9 +60,14 @@
     },
     methods: {
       toResults () {
+        // let params = {
+        //   'searchs': this.progressChips !== null ? _.uniq((this.searchs).concat(this.progressChips)) : this.searchs,
+        //   'position': {latitude: this.place.geometry.location.lat(), longitude: this.place.geometry.location.lng()},
+        //   'mileage': {min: 0, max: this.mileage, stop: this.mileageStop}
+        // }
         let params = {
           'searchs': this.progressChips !== null ? _.uniq((this.searchs).concat(this.progressChips)) : this.searchs,
-          'position': {latitude: this.place.geometry.location.lat(), longitude: this.place.geometry.location.lng()},
+          'position': {latitude: this.place.coords.lat, longitude: this.place.coords.lon},
           'mileage': {min: 0, max: this.mileage, stop: this.mileageStop}
         }
         this.$router.push({path: '/adverts', query: params})

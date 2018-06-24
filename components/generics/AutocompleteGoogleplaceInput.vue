@@ -59,7 +59,7 @@
         // When choice in autocomplete
         this.googleResponse = event.detail
         this.formattedAddress = this.googleResponse.formatted_address
-        this.$emit('change', this.googleResponse)
+        this.$emit('change', {text: this.formattedAddress, raw: this.googleResponse, coords: {lat: this.googleResponse.geometry.location.lat(), lon: this.googleResponse.geometry.location.lng()}})
       },
       testChange (event) {
         // Emit empty place if empty input

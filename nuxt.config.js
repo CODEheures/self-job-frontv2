@@ -87,6 +87,7 @@ module.exports = {
       href: process.env.isDev === 'true' ? 'http://api.selfjob.test/api' : 'https://api-selfjob.codeheures.fr/api'
     },
     fallbackLocale: 'fr',
-    googleMapApiKey: process.env.isDev === 'true' ? '' : 'AIzaSyB6YONdutLGDWC70gK9f3VZp_3_eIE7Alw'
+    googleMapApiKey: process.env.isDev === 'true' ? '' : 'AIzaSyB6YONdutLGDWC70gK9f3VZp_3_eIE7Alw',
+    mapBoxApiKey: 'pk.eyJ1IjoiY29kZWhldXJlcyIsImEiOiJjamlybGFoMTQwdzcyM3ZtczlldXFzb294In0.63pY2nz6jItpe5wyhQ2dUg'
   }
 }
