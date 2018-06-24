@@ -29,7 +29,7 @@
           </div>
           <v-spacer></v-spacer>
           <div class="text-xs-right caption grey--text text--lighten-1">
-            <span>{{ advert.mileage }}Km <v-icon>360</v-icon></span><br />
+            <span>{{ $route.query.mileage }}Km <v-icon>360</v-icon></span><br />
             <span>{{ formatMyDate(advert.created_at) }} <v-icon>schedule</v-icon></span>
           </div>
         </v-card-title>

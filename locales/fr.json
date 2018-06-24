@@ -1,7 +1,13 @@
 {
   "generics": {
     "close": "fermer",
-    "see": "voir"
+    "see": "voir",
+    "email": "e-mail",
+    "phone": "téléphone",
+    "country": "pays",
+    "required": "obligatoire",
+    "invalidEmail": "e-mail invalide",
+    "invalidPhone": "numéro invalide"
   },
   "footer": {
     "description": "SelfJob, le recrutement sans CV #savoirFaire #savoirÊtre"
@@ -26,5 +32,10 @@
     "allUnchecked": "Cochez toutes les éxigences pour accéder au questionnaire",
     "allChecked": "J'ai coché toutes les cases et je déclare posséder toutes les exigences requises pour continuer",
     "button": "Accéder au questionnaire"
+  },
+  "quiz": {
+    "infoForAccess": "remplir Email et téléphone pour acceder au questionnaire #savoirÊtre de l'employeur",
+    "submit": "passer au questions",
+    "clear": "éffacer"
   }
 }

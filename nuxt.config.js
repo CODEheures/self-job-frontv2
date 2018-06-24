@@ -61,7 +61,8 @@ module.exports = {
       'vue-i18n',
       'axios',
       'lodash',
-      'moment'
+      'moment',
+      'libphonenumber-js'
     ],
     extractCSS: true,
     /*

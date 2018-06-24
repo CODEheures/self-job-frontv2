@@ -26,20 +26,18 @@
 </template>
 
 <script>
-  import AutocompleteGoogleplaceInput from '~/components/generics/AutocompleteGoogleplaceInput'
+  // import AutocompleteGoogleplaceInput from '~/components/generics/AutocompleteGoogleplaceInput'
   import AutocompleteMapboxInput from '~/components/generics/AutocompleteMapboxInput'
   import EditableChipsList from '~/components/generics/EditableChipsList'
   import _ from 'lodash'
   export default {
     components: {
-      AutocompleteGoogleplaceInput,
+      // AutocompleteGoogleplaceInput,
       AutocompleteMapboxInput,
       EditableChipsList
     },
     computed: {
       isComplete () {
-        // return 'geometry' in this.place &&
-        //   'location' in this.place.geometry
         return 'coords' in this.place
       }
     },
@@ -60,11 +58,6 @@
     },
     methods: {
       toResults () {
-        // let params = {
-        //   'searchs': this.progressChips !== null ? _.uniq((this.searchs).concat(this.progressChips)) : this.searchs,
-        //   'position': {latitude: this.place.geometry.location.lat(), longitude: this.place.geometry.location.lng()},
-        //   'mileage': {min: 0, max: this.mileage, stop: this.mileageStop}
-        // }
         let params = {
           'searchs': this.progressChips !== null ? _.uniq((this.searchs).concat(this.progressChips)) : this.searchs,
           'position': {latitude: this.place.coords.lat, longitude: this.place.coords.lon},
