@@ -25,18 +25,15 @@
 
   export default {
     mounted () {
-      this.$root.$emit('xhr', true)
-      Api.showQuiz(this.$route.params.id)
-        .then((response) => {
-          this.questions = response.data
-        })
-        .catch(() => {
-          this.snackBar.text = this.$t('home.search.errorApi')
-          this.snackBar.display = true
-        })
-        .finally(() => {
-          this.$root.$emit('xhr', false)
-        })
+      if ('email' in this.$route.query &&
+        'phone' in this.$route.query &&
+        'phoneCountry' in this.$route.query
+      ) {
+        this.showQuiz()
+      } else {
+        this.snackBar.text = this.$t('home.search.errorApi')
+        this.snackBar.display = true
+      }
     },
     data () {
       return {
@@ -46,6 +43,22 @@
           text: ''
         },
         questions: []
+      }
+    },
+    methods: {
+      showQuiz () {
+        this.$root.$emit('xhr', true)
+        Api.showQuiz(this.$route.params.id)
+          .then((response) => {
+            this.questions = response.data
+          })
+          .catch(() => {
+            this.snackBar.text = this.$t('home.search.errorApi')
+            this.snackBar.display = true
+          })
+          .finally(() => {
+            this.$root.$emit('xhr', false)
+          })
       }
     }
   }

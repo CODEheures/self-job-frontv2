@@ -38,13 +38,17 @@ module.exports = {
     middleware: 'i18n',
     parseQuery: function (query) {
       if (query.length > 0) {
-        return JSON.parse(decodeURI(query))
+        try {
+          return JSON.parse(atob(decodeURI(query)))
+        } catch (e) {
+          return {}
+        }
       }
       return {}
     },
     stringifyQuery: function (query) {
       if (Object.keys(query).length > 0) {
-        return '?' + encodeURI(JSON.stringify(query))
+        return '?' + encodeURI(btoa(JSON.stringify(query)))
       }
       return ''
     }
