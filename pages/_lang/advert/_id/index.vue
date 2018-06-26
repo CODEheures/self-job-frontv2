@@ -13,7 +13,7 @@
     </v-snackbar>
     <v-flex xs12 sm10 md6 lg4>
       <v-card v-if="advert !== undefined" class="elevation-12">
-        <v-card-title primary-title class="indigo">
+        <v-card-title primary-title class="indigo lighten-1">
           <h3 class="headline mb-0 white--text">{{ advert.title | capitalize }} &#0149 {{ advert.contract | uppercase}}</h3>
           <v-spacer></v-spacer>
           <div class="caption white--text">

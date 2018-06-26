@@ -40,7 +40,13 @@
       <v-btn icon @click="goBack" v-show="$route.name !== 'index'">
         <v-icon>navigate_before</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title v-text="title" class="mr-2"></v-toolbar-title>
+      <v-avatar
+        tile
+        size="30"
+      >
+        <img src="~/assets/images/logo.png" alt="Vuetify.js" class="" />
+      </v-avatar>
       <v-spacer></v-spacer>
     </v-toolbar>
     <v-content>

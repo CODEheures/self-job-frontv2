@@ -2,6 +2,8 @@
   "generics": {
     "close": "fermer",
     "see": "voir",
+    "add": "ajouter",
+    "remove": "retirer",
     "email": "e-mail",
     "phone": "téléphone",
     "country": "pays",
@@ -36,6 +38,63 @@
   "quiz": {
     "infoForAccess": "remplir Email et téléphone pour acceder au questionnaire #savoirÊtre de l'employeur",
     "submit": "passer au questions",
-    "clear": "éffacer"
+    "clear": "éffacer",
+    "quizTitle": "Questionnaire #savoirÊtre",
+    "quizInfo": "Aucune réponse n'est sauvegardée sur nos serveurs. Vos réponses sont évaluées et seule la note finale totale est sauvée"
+  },
+  "questions": {
+    "common": {
+      "example": "Exemple",
+      "add": "ajouter",
+      "remove": "supprimer",
+      "questionCardTitle": "Question",
+      "questionCardtype": {"constructor": "constructeur", "preview": "apperçu"},
+      "libraryRemoveConfirmTitle": "Confirmation",
+      "libraryRemoveConfirmMessage": "Veuillez confirmer la suppression de cette question de votre librairie personnelle",
+      "libraryRemoveCancel": "Annuler",
+      "libraryRemoveConfirm": "Confirmer",
+      "questionVisibilityLabel": "Cette question a une visibilité",
+      "questionTypePrivate": "Personnelle",
+      "questionTypeCorporate": "Entre collègues",
+      "questionTypePublic": "Publique",
+      "updateLibraryTypeOk": "Visibilité mise à jour",
+      "updateLibraryTypeKo": "La mise à jour de la visibilité a échouée"
+    },
+    "0": {
+      "title": "Question à choix unique",
+      "field_helper": "Choisir une réponse",
+      "constructor": {
+        "label_helper": "Votre Question:",
+        "label_helper2": "Attribution des points",
+        "label_rank_chips": "pts"
+      }
+    },
+    "1": {
+      "title": "Question à choix multiples",
+      "field_helper": "Choisir une ou plusieurs réponse(s)",
+      "constructor": {
+        "label_helper": "Votre Question:",
+        "label_helper2": "Attribution des points",
+        "label_rank_chips": "pts"
+      }
+    },
+    "2": {
+      "title": "Liste à classer",
+      "field_helper": "Classer cette liste",
+      "constructor": {
+        "label_helper": "Votre Question:",
+        "label_helper2": "Votre classement préféré:"
+      }
+    },
+    "3": {
+      "title": "Question ouverte",
+      "field_helper": "Ecrire votre réponse directement dans le champs texte",
+      "float_helper": "Ecrire votre réponse ici",
+      "constructor": {
+        "label_helper": "Votre Question:",
+        "label_helper2": "Les expressions clés attendues:",
+        "label_helper3": "Les expressions clés non désirées:"
+      }
+    }
   }
 }

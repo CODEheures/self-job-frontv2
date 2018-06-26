@@ -3,9 +3,9 @@
   Call adverts page on click button
 -->
 <template>
-  <v-layout column justify-center align-center>
+  <v-layout justify-center align-center>
     <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
+      <div class="text-xs-center hidden-xs-only">
         <img src="~/assets/images/logo.png" alt="Vuetify.js" class="mb-5" />
       </div>
       <v-card>

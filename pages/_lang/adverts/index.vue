@@ -22,7 +22,7 @@
         </v-flex>
         <v-flex v-for="advert,index in adverts" :key="advert.id" xs12 md6 lg4 xl3>
           <v-card>
-            <v-card-title primary-title class="indigo">
+            <v-card-title primary-title class="indigo lighten-1">
               <h3 class="headline mb-0 white--text">{{ advert.title | capitalize }} &#0149 {{ advert.contract | uppercase }}</h3>
               <v-spacer></v-spacer>
               <div class="hidden-sm-and-up caption white--text">
