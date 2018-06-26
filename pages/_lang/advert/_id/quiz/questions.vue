@@ -29,7 +29,7 @@
 
 <script>
   import Api from '~/plugins/api.js'
-  import QuestionView from '~/components/generics/questions/view'
+  import QuestionView from '~/components/generics/questions/View.vue'
   import _ from 'lodash'
   export default {
     components: {
