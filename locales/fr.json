@@ -19,6 +19,7 @@
     "search": {
       "title": "Trouver des annonces",
       "helper": "Choisissez un lieu, un rayon de recherche et entrez des mots clés pour trouvez vos annonces",
+      "beta": "Ce site est en développement. Choisissez \"Tours\" comme lieu et \"aide\" ou \"aide à domicile\" comme recherche pour obtenir des résultats",
       "place": "lieu",
       "distance": "rayon de recherche",
       "searchs": {
@@ -28,6 +29,16 @@
       "errorApi": "Désolé le serveur ne répond pas",
       "zeroResult": "Aucun résultat ne correspond à votre demande"
     }
+  },
+  "login": {
+    "title": "Se connecter",
+    "email": "votre email",
+    "password": "votre mot de passe",
+    "alreadyConnected": "Vous êtes déjà connecté",
+    "logout": "se deconnecter"
+  },
+  "logout": {
+    "title": "Se déconnecter"
   },
   "advert": {
     "requirements": "éxigences",

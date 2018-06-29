@@ -35,7 +35,7 @@ module.exports = {
   ** Router
    */
   router: {
-    middleware: 'i18n',
+    middleware: ['getToken', 'i18n'],
     parseQuery: function (query) {
       if (query.length > 0) {
         try {

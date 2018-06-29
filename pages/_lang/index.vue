@@ -12,6 +12,7 @@
         <v-card-title class="headline">{{ $t('home.search.title') }}</v-card-title>
         <v-card-text>
           <p>{{ $t('home.search.helper') }}</p>
+          <v-alert v-model="beta" outline type="info">{{ $t('home.search.beta') }}</v-alert>
           <autocomplete-mapbox-input v-model="place" />
           <v-slider v-model="mileage" prepend-icon="360" :min="10" :max="mileageStop" ticks step="10" thumb-label validate-on-blur id="slide-distance"></v-slider>
           <editable-chips-list v-model="searchs" @progress="progressChips = $event"/>
@@ -43,6 +44,7 @@
     },
     data () {
       return {
+        beta: true,
         mileage: 0,
         mileageStop: 250,
         searchs: [],

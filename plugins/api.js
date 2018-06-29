@@ -57,14 +57,14 @@ const Api = {
       }
     })
   },
-  updatePassword (password, passwordConfirmation) {
+  updatePassword (password, passwordConfirmation, accessToken) {
     return axios.request({
       method: 'put',
       url: routes.updatePassword,
       data: {'password': password, 'password_confirmation': passwordConfirmation},
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       }
     })
   },
@@ -78,24 +78,24 @@ const Api = {
       }
     })
   },
-  logout () {
+  logout (accessToken) {
     return axios.request({
       method: 'post',
       url: routes.logout,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       }
     })
   },
-  invite (email) {
+  invite (email, accessToken) {
     return axios.request({
       method: 'post',
       url: routes.invite,
       data: {'email': email},
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       }
     })
   },
@@ -123,33 +123,33 @@ const Api = {
       }
     })
   },
-  getUser () {
+  getUser (accessToken) {
     return axios.request({
       method: 'get',
       url: routes.user,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       }
     })
   },
-  getColleagues () {
+  getColleagues (accessToken) {
     return axios.request({
       method: 'get',
       url: routes.colleagues,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       }
     })
   },
-  postUserProperty (property, value) {
+  postUserProperty (property, value, accessToken) {
     return axios.request({
       method: 'post',
       url: routes.setUserProperty,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       },
       data: {
         property: property,
@@ -157,13 +157,13 @@ const Api = {
       }
     })
   },
-  postAdvert (advert, questions, language) {
+  postAdvert (advert, questions, language, accessToken) {
     return axios.request({
       method: 'post',
       url: routes.postAdvert,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       },
       data: {
         'advert': advert,
@@ -172,13 +172,13 @@ const Api = {
       }
     })
   },
-  publishAdvert (id, publish) {
+  publishAdvert (id, publish, accessToken) {
     return axios.request({
       method: 'put',
       url: routes.publishAdvert,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       },
       data: {
         'id': id,
@@ -186,13 +186,13 @@ const Api = {
       }
     })
   },
-  deleteAdvert (id) {
+  deleteAdvert (id, accessToken) {
     return axios.request({
       method: 'delete',
       url: routes.deleteAdvert,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       },
       data: {
         'id': id
@@ -251,72 +251,72 @@ const Api = {
       }
     })
   },
-  getMyAdverts () {
+  getMyAdverts (accessToken) {
     return axios.request({
       method: 'get',
       url: routes.getMyAdverts,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       }
     })
   },
-  getAdvertAnswers (id) {
+  getAdvertAnswers (id, accessToken) {
     return axios.request({
       method: 'get',
       url: routes.getAdvertAnswers + id,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       }
     })
   },
-  delPicture (url) {
+  delPicture (url, accessToken) {
     return axios.request({
       method: 'delete',
       url: routes.delPicture,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       },
       data: {
         url: url
       }
     })
   },
-  getQuestionsLibrary (language) {
+  getQuestionsLibrary (language, accessToken) {
     return axios.request({
       method: 'get',
       url: routes.getQuestionsLibrary,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       },
       params: {
         language: language
       }
     })
   },
-  removeOfLibrary (hash) {
+  removeOfLibrary (hash, accessToken) {
     return axios.request({
       method: 'put',
       url: routes.removeOfLibrary,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       },
       data: {
         hash: hash
       }
     })
   },
-  changeQuestionLibraryType (hash, type) {
+  changeQuestionLibraryType (hash, type, accessToken) {
     return axios.request({
       method: 'put',
       url: routes.changeQuestionLibraryType,
       headers: {
         'Accept': 'application/json',
-        'Authorization': 'Bearer ' + localStorage.getItem('_at')
+        'Authorization': 'Bearer ' + accessToken
       },
       data: {
         hash: hash,

@@ -5,11 +5,13 @@
         <v-list class="pa-0">
           <v-list-tile avatar>
             <v-list-tile-avatar>
-              <img src="https://randomuser.me/api/portraits/men/85.jpg" >
+              <img src="https://randomuser.me/api/portraits/men/85.jpg" v-if="$store.state.user.auth">
+              <img src="~/assets/images/logonb.png" v-else>
             </v-list-tile-avatar>
-            <v-list-tile-content>
+            <v-list-tile-content v-if="$store.state.user.auth">
               <v-list-tile-title>John Leider</v-list-tile-title>
             </v-list-tile-content>
+            <v-spacer></v-spacer>
             <v-list-tile-action>
               <v-btn icon @click.native.stop="miniVariant = !miniVariant">
                 <v-icon>chevron_left</v-icon>
@@ -19,7 +21,7 @@
         </v-list>
       </v-toolbar>
       <v-list>
-        <v-list-tile router exact :to="item.to" v-for="(item, i) in items" :key="i">
+        <v-list-tile nuxt exact :to="item.to" v-for="(item, i) in items" :key="i">
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
           </v-list-tile-action>
@@ -91,8 +93,9 @@
         mobileBreakPoint: 960,
         title: 'SelfJob',
         items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+          { icon: 'apps', title: this.$t('home.search.title'), to: '/' },
+          { icon: 'fas fa-user', title: this.$t('login.title'), to: '/login' }
+          // { icon: 'fas fa-user-slash', title: this.$t('logout.title'), to: '/login' }
         ],
         icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram']
       }
