@@ -35,10 +35,14 @@
     "email": "votre email",
     "password": "votre mot de passe",
     "alreadyConnected": "Vous êtes déjà connecté",
-    "logout": "se deconnecter"
+    "logout": "se deconnecter",
+    "invalidCredentials": "Identifiant ou mot de passe invalide"
   },
   "logout": {
-    "title": "Se déconnecter"
+    "title": "Déconnexion",
+    "information": "Déconnexion en cours",
+    "isLogout": "Vous êtes desormais déconnecté",
+    "isAlreadyLogout": "Vous êtes déjà déconnecté"
   },
   "advert": {
     "requirements": "éxigences",

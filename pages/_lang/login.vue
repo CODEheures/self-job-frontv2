@@ -29,7 +29,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="primary" flat @click="login" :disabled="!isComplete" v-if="!$store.state.user.auth">{{ $t('login.title') }}</v-btn>
-          <v-btn color="primary" flat @click="" v-else>{{ $t('login.logout') }}</v-btn>
+          <v-btn color="primary" flat nuxt :to="{name: 'logout'}" v-else>{{ $t('login.logout') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -63,8 +63,12 @@
             document.cookie = process.env.tokenCookieName + tokenCookie + '; max-age=' + response.data.expires_in + '; path=/'
             this.$router.push({path: '/'})
           })
-          .catch(() => {
-            this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
+          .catch((error) => {
+            if (error.response.status === 401) {
+              this.$root.$emit('displaySnack', this.$t('login.invalidCredentials'))
+            } else {
+              this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
+            }
           })
           .finally(() => {
             this.$root.$emit('xhr', false)
