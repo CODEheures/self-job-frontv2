@@ -5,9 +5,6 @@
 <template>
   <v-layout justify-center align-center>
     <v-flex xs12 sm8 md6>
-      <div class="text-xs-center hidden-xs-only">
-        <img src="~/assets/images/logo.png" alt="Vuetify.js" class="mb-5" />
-      </div>
       <v-card>
         <v-card-title class="headline">{{ $t('home.search.title') }}</v-card-title>
         <v-card-text>
@@ -28,7 +25,7 @@
             id="slide-distance"
             class="mt-5"
           ></v-slider>
-          <editable-chips-list v-model="searchs" @progress="progressChips = $event"/>
+          <editable-chips-list v-model="searchs" @progress="progressChips = $event" class="mt-3"/>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>

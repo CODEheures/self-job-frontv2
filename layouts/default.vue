@@ -23,7 +23,10 @@
       <v-list>
         <v-list-tile nuxt exact :to="item.to" v-for="(item, i) in items" :key="i">
           <v-list-tile-action>
-            <v-icon v-html="item.icon"></v-icon>
+            <v-tooltip bottom>
+              <span slot="activator"><v-icon v-html="item.icon"></v-icon></span>
+              <span>{{ item.title }}</span>
+            </v-tooltip>
           </v-list-tile-action>
           <v-list-tile-content>
             <v-list-tile-title v-text="item.title"></v-list-tile-title>
@@ -92,9 +95,9 @@
           { icon: 'apps', title: this.$t('home.search.title'), to: '/' }
         ]
         if (!this.$store.state.user.auth) {
-          items.push({ icon: 'fas fa-user', title: this.$t('login.title'), to: '/login' })
+          items.push({ icon: 'account_box', title: this.$t('login.title'), to: '/login' })
         } else {
-          items.push({ icon: 'fas fa-user-slash', title: this.$t('logout.title'), to: '/login' })
+          items.push({ icon: 'exit_to_app', title: this.$t('logout.title'), to: '/login' })
         }
         return items
       }
@@ -122,8 +125,10 @@
 </script>
 
 <style lang="stylus">
-  main.v-content > .v-content__wrap
-    display:flex
-    flex-flow row wrap
-    align-content: space-between
+  main.v-content
+    background url("~/assets/images/background3.png") repeat
+    & > .v-content__wrap
+      display flex
+      flex-flow row wrap
+      align-content space-between
 </style>
