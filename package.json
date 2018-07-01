@@ -11,14 +11,16 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "atob": "^2.1.1",
     "axios": "^0.18.0",
+    "btoa": "^1.2.1",
     "cross-env": "^5.2.0",
     "libphonenumber-js": "^1.2.15",
     "lodash": "^4.17.10",
     "moment": "^2.22.2",
     "nuxt": "^1.0.0",
     "vue-i18n": "^7.8.1",
-    "vuetify": "^1.1.0"
+    "vuetify": "^1.1.1"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

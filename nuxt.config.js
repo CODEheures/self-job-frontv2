@@ -39,7 +39,12 @@ module.exports = {
     parseQuery: function (query) {
       if (query.length > 0) {
         try {
-          return JSON.parse(atob(decodeURI(query)))
+          if (process.server) {
+            let atob = require('atob')
+            return JSON.parse(atob(decodeURI(query)))
+          } else {
+            return JSON.parse(atob(decodeURI(query)))
+          }
         } catch (e) {
           return {}
         }
@@ -48,7 +53,12 @@ module.exports = {
     },
     stringifyQuery: function (query) {
       if (Object.keys(query).length > 0) {
-        return '?' + encodeURI(btoa(JSON.stringify(query)))
+        if (process.server) {
+          let btoa = require('btoa')
+          return '?' + encodeURI(btoa(JSON.stringify(query)))
+        } else {
+          return '?' + encodeURI(btoa(JSON.stringify(query)))
+        }
       }
       return ''
     }

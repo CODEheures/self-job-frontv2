@@ -54,6 +54,11 @@
         }
       }
     },
+    mounted () {
+      if ('unauthorized' in this.$route.query && this.$route.query.unauthorized === true) {
+        this.$root.$emit('displaySnack', this.$t('login.unauthorized'))
+      }
+    },
     methods: {
       login () {
         this.$root.$emit('xhr', true)
@@ -61,7 +66,15 @@
           .then((response) => {
             let tokenCookie = encodeURIComponent(response.data.access_token)
             document.cookie = process.env.tokenCookieName + tokenCookie + '; max-age=' + response.data.expires_in + '; path=/'
-            this.$router.push({path: '/'})
+            if ('redirectAfterLoginSuccess' in this.$route.query) {
+              this.$router.push({
+                name: this.$route.query.redirectAfterLoginSuccess.name,
+                params: this.$route.query.redirectAfterLoginSuccess.params,
+                query: this.$route.query.redirectAfterLoginSuccess.query
+              })
+            } else {
+              this.$router.push({path: '/'})
+            }
           })
           .catch((error) => {
             if (error.response.status === 401) {

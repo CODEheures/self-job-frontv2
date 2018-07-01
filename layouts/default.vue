@@ -105,6 +105,7 @@
         if (!this.$store.state.user.auth) {
           items.push({ icon: 'account_box', title: this.$t('login.title'), to: '/login' })
         } else {
+          items.push({ icon: 'list', title: this.$t('mines.title'), to: '/adverts/mines' })
           items.push({ icon: 'exit_to_app', title: this.$t('logout.title'), to: '/logout' })
         }
         return items
