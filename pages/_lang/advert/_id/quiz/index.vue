@@ -48,7 +48,7 @@
 </template>
 
 <script>
-  import countries from '~/plugins/countriesCode.js'
+  import countries from '~/vendors/countriesCode.js'
   import { AsYouType, isValidNumber, formatNumber, getNumberType } from 'libphonenumber-js'
 
   export default {

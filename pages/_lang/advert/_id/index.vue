@@ -79,6 +79,7 @@
 <script>
   import Api from '~/plugins/api.js'
   import moment from 'moment'
+  import Filters from '~/vendors/filters'
 
   export default {
     data () {
@@ -93,18 +94,7 @@
         allChecked: false
       }
     },
-    filters: {
-      capitalize: function (value) {
-        if (!value) return ''
-        value = value.toString()
-        return value.charAt(0).toUpperCase() + value.slice(1)
-      },
-      uppercase: function (value) {
-        if (!value) return ''
-        value = value.toString()
-        return value.toUpperCase()
-      }
-    },
+    filters: Filters,
     mounted () {
       this.getAdvert()
     },

@@ -58,9 +58,11 @@ module.exports = {
   */
   build: {
     vendor: [
+      '~/vendors/countriesCode',
+      '~/vendors/filters',
+      '~/vendors/loaderJs.js',
       '~/plugins/vuetify.js',
       '~/plugins/api.js',
-      '~/plugins/loaderJs.js',
       '~/plugins/placesAutocomplete.js',
       'vue-i18n',
       'axios',

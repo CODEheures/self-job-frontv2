@@ -2,7 +2,7 @@
 ** This Object transform input text to autocomplete google place
 *  input dispatch event 'place' with object place in detail when user choice a place
  */
-import LoaderJs from '~/plugins/loaderJs.js'
+import LoaderJs from '~/vendors/loaderJs.js'
 
 class PlacesAutocomplete {
   constructor (elem) {
