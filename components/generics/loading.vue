@@ -38,6 +38,6 @@
     font-family sans-serif
     z-index 200
 
-    .progress-linear
+    .v-progress-linear
       margin 0
 </style>

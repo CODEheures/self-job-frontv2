@@ -17,7 +17,7 @@
             <v-text-field
               v-model="password"
               :append-icon="hidePass ? 'visibility' : 'visibility_off'"
-              :append-icon-cb="() => (hidePass = !hidePass)"
+              @click:append="() => (hidePass = !hidePass)"
               :type="hidePass ? 'password' : 'text'"
               :rules="[rules.required]"
               :label="$t('login.password')"
@@ -28,7 +28,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" flat @click="" :disabled="!isComplete" v-if="!$store.state.user.auth">{{ $t('login.title') }}</v-btn>
+          <v-btn color="primary" flat @click="login" :disabled="!isComplete" v-if="!$store.state.user.auth">{{ $t('login.title') }}</v-btn>
           <v-btn color="primary" flat @click="" v-else>{{ $t('login.logout') }}</v-btn>
         </v-card-actions>
       </v-card>
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+  import Api from '~/plugins/api.js'
   export default {
     data () {
       return {
@@ -54,7 +55,21 @@
       }
     },
     methods: {
-
+      login () {
+        this.$root.$emit('xhr', true)
+        Api.login(this.email, this.password, this.$store.state.locale)
+          .then((response) => {
+            let tokenCookie = encodeURIComponent(response.data.access_token)
+            document.cookie = process.env.tokenCookieName + tokenCookie + '; max-age=' + response.data.expires_in + '; path=/'
+            this.$router.push({path: '/'})
+          })
+          .catch(() => {
+            this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
+          })
+          .finally(() => {
+            this.$root.$emit('xhr', false)
+          })
+      }
     }
   }
 </script>

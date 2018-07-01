@@ -3,9 +3,6 @@
   If cookies sj_t exist user is auth and token is save
  */
 export default function ({ req, store }) {
-  // Cookie name for token
-  let cookieName = 'sj_t='
-
   // Get the decodedCookie
   let decodedCookie
   if (process.server) {
@@ -19,8 +16,8 @@ export default function ({ req, store }) {
   let existToken = false
   items.forEach((item, index) => {
     let trimItem = item.trimLeft()
-    if (trimItem.indexOf(cookieName) === 0) {
-      store.commit('SET_USER_TOKEN', trimItem.substring(cookieName.length, trimItem.length))
+    if (trimItem.indexOf(process.env.tokenCookieName) === 0) {
+      store.commit('SET_USER_TOKEN', trimItem.substring(process.env.tokenCookieName.length, trimItem.length))
       existToken = true
     }
   })

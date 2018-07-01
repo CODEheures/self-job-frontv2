@@ -95,6 +95,7 @@ module.exports = {
     },
     fallbackLocale: 'fr',
     googleMapApiKey: process.env.isDev === 'true' ? '' : 'AIzaSyB6YONdutLGDWC70gK9f3VZp_3_eIE7Alw',
-    mapBoxApiKey: 'pk.eyJ1IjoiY29kZWhldXJlcyIsImEiOiJjamlybGFoMTQwdzcyM3ZtczlldXFzb294In0.63pY2nz6jItpe5wyhQ2dUg'
+    mapBoxApiKey: 'pk.eyJ1IjoiY29kZWhldXJlcyIsImEiOiJjamlybGFoMTQwdzcyM3ZtczlldXFzb294In0.63pY2nz6jItpe5wyhQ2dUg',
+    tokenCookieName: 'sj_t='
   }
 }

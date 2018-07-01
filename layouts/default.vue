@@ -54,6 +54,14 @@
       </v-avatar>
       <v-spacer></v-spacer>
     </v-toolbar>
+    <v-snackbar
+      :timeout="6000"
+      top
+      v-model="snackBar.display"
+    >
+      {{ snackBar.text }}
+      <v-btn flat color="pink" @click.native="snackBar.display = false">{{ $t('generics.close')}}</v-btn>
+    </v-snackbar>
     <v-content>
       <v-container>
         <nuxt />
@@ -102,13 +110,24 @@
         return items
       }
     },
+    beforeMount () {
+      // listen $xhr root event
+      this.$root.$on('displaySnack', (payload) => {
+        this.snackBar.text = payload
+        this.snackBar.display = true
+      })
+    },
     data () {
       return {
         drawer: false,
         miniVariant: true,
         mobileBreakPoint: 960,
         title: 'SelfJob',
-        icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram']
+        icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram'],
+        snackBar: {
+          display: false,
+          text: ''
+        }
       }
     },
     mounted () {

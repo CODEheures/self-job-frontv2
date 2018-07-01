@@ -3,14 +3,6 @@
 -->
 <template>
   <v-layout justify-center align-center>
-    <v-snackbar
-      :timeout="6000"
-      top
-      v-model="snackBar.display"
-    >
-      {{ snackBar.text }}
-      <v-btn flat color="pink" @click.native="snackBar.display = false">{{ $t('generics.close')}}</v-btn>
-    </v-snackbar>
     <v-flex xs12 sm10 md6 lg4>
       <v-card v-if="advert !== undefined" class="elevation-12">
         <v-card-title primary-title class="indigo lighten-1">
@@ -79,16 +71,12 @@
 <script>
   import Api from '~/plugins/api.js'
   import moment from 'moment'
-  import Filters from '~/vendors/filters'
+  import Filters from '~/vendors/filters.js'
 
   export default {
     data () {
       return {
         advert: undefined,
-        snackBar: {
-          display: false,
-          text: ''
-        },
         heightMediaCard: 200,
         check: [],
         allChecked: false
@@ -110,8 +98,7 @@
           this.advert = response.data
         } catch (e) {
           this.$root.$emit('xhr', false)
-          this.snackBar.text = this.$t('home.search.errorApi')
-          this.snackBar.display = true
+          this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
         }
       },
       formatMyDate (myDate) {

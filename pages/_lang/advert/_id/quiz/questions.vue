@@ -3,14 +3,6 @@
 -->
 <template>
   <v-layout justify-center align-center>
-    <v-snackbar
-      :timeout="6000"
-      top
-      v-model="snackBar.display"
-    >
-      {{ snackBar.text }}
-      <v-btn flat color="pink" @click.native="snackBar.display = false">{{ $t('generics.close')}}</v-btn>
-    </v-snackbar>
     <v-flex xs12 sm10 md6 lg4>
       <h1 class="headline mb-2">{{ $t('quiz.quizTitle') }}</h1>
       <v-alert :value="true" outline color="info" icon="info">
@@ -47,17 +39,12 @@
       ) {
         this.showQuiz()
       } else {
-        this.snackBar.text = this.$t('home.search.errorApi')
-        this.snackBar.display = true
+        this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
       }
     },
     data () {
       return {
         valid: false,
-        snackBar: {
-          display: false,
-          text: ''
-        },
         questions: [],
         answers: []
       }
@@ -70,8 +57,7 @@
             this.questions = response.data
           })
           .catch(() => {
-            this.snackBar.text = this.$t('home.search.errorApi')
-            this.snackBar.display = true
+            this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
           })
           .finally(() => {
             this.$root.$emit('xhr', false)

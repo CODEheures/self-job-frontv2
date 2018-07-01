@@ -5,14 +5,6 @@
 -->
 <template>
   <v-layout justify-center align-center>
-    <v-snackbar
-      :timeout="6000"
-      top
-      v-model="snackBar.display"
-    >
-      {{ snackBar.text }}
-      <v-btn flat color="pink" @click.native="snackBar.display = false">{{ $t('generics.close')}}</v-btn>
-    </v-snackbar>
     <v-container fluid grid-list-lg pa-0>
       <v-layout row wrap>
         <v-flex xs12 v-show="adverts.length === 0">
@@ -60,31 +52,17 @@
 <script>
   import Api from '~/plugins/api.js'
   import moment from 'moment'
+  import Filter from '~/vendors/filters.js'
 
   export default {
     data () {
       return {
         haveAFirstSubmited: false,
         adverts: [],
-        totalHits: 0,
-        snackBar: {
-          display: false,
-          text: ''
-        }
+        totalHits: 0
       }
     },
-    filters: {
-      capitalize: function (value) {
-        if (!value) return ''
-        value = value.toString()
-        return value.charAt(0).toUpperCase() + value.slice(1)
-      },
-      uppercase: function (value) {
-        if (!value) return ''
-        value = value.toString()
-        return value.toUpperCase()
-      }
-    },
+    filters: Filter,
     mounted () {
       this.getResults()
     },
@@ -104,13 +82,11 @@
           this.totalHits = response.data.totalHits
           this.haveAFirstSubmited = true
           if (this.totalHits === 0) {
-            this.snackBar.text = this.$t('home.search.zeroResult')
-            this.snackBar.display = true
+            this.$root.$emit('displaySnack', this.$t('home.search.zeroResult'))
           }
         } catch (e) {
           this.$root.$emit('xhr', false)
-          this.snackBar.text = this.$t('home.search.errorApi')
-          this.snackBar.display = true
+          this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
         }
       },
       formatMyDate (myDate) {
