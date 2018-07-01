@@ -14,7 +14,20 @@
           <p>{{ $t('home.search.helper') }}</p>
           <v-alert v-model="beta" outline type="info">{{ $t('home.search.beta') }}</v-alert>
           <autocomplete-mapbox-input v-model="place" />
-          <v-slider v-model="mileage" prepend-icon="360" :min="10" :max="mileageStop" ticks step="10" thumb-label validate-on-blur id="slide-distance"></v-slider>
+          <v-slider
+            v-model="mileage"
+            prepend-icon="360"
+            :min="10"
+            :max="mileageStop"
+            ticks
+            :step="10"
+            :thumb-size="36"
+            thumb-label="always"
+            always-dirty
+            validate-on-blur
+            id="slide-distance"
+            class="mt-5"
+          ></v-slider>
           <editable-chips-list v-model="searchs" @progress="progressChips = $event"/>
         </v-card-text>
         <v-card-actions>
@@ -45,7 +58,7 @@
     data () {
       return {
         beta: true,
-        mileage: 0,
+        mileage: 10,
         mileageStop: 250,
         searchs: [],
         place: {},
@@ -55,7 +68,7 @@
     mounted () {
       if (process.client) {
         // Place text after slider
-        document.querySelector('#slide-distance .input-group__input .slider').dataset.after = this.$t('home.search.distance')
+        document.querySelector('#slide-distance .v-input__slot .v-slider').dataset.after = this.$t('home.search.distance')
       }
     },
     methods: {
@@ -72,21 +85,19 @@
 </script>
 
 <style lang="stylus">
-  #slide-distance > .input-group__input > .slider
-    &:after
+  #slide-distance > .v-input__control > .v-input__slot > .v-slider
+    &::after
       content attr(data-after)
       color #757575
       position absolute
       right 0
       bottom -8px
-  .slider__thumb--label__container
-    display block !important
-    transition none
-    & div.slider__thumb--label
-      width 36px
-      height 36px
-      left -18px
-      top -50px
-      & span:after
+  .v-slider__thumb-label__container
+    & div.v-slider__thumb-label
+      // width 36px
+      // height 36px
+      // left -18px
+      // top -50px
+      & span::after
         content "km"
 </style>

@@ -5,11 +5,11 @@
     - @progress: value of the input before validate it on chips
 -->
 <template>
-  <v-select
+  <v-combobox
     v-model="dataList"
     :label="$t('home.search.searchs.label')"
     chips
-    tags
+    multiple
     solo
     prepend-icon="format_list_bulleted"
     clearable
@@ -27,7 +27,7 @@
         <strong>{{ data.item }}</strong>
       </v-chip>
     </template>
-  </v-select>
+  </v-combobox>
 </template>
 
 <script>

@@ -3,20 +3,20 @@
   V-model: Object
 -->
 <template>
-  <v-select
+  <v-autocomplete
     :loading="loading"
     :items="mapBoxResponse"
     :search-input.sync="search"
     v-model="select"
     prepend-icon="place"
     :label="$t('home.search.place')"
-    autocomplete
     required
     flat
     dense
     return-object
     persistent-hint
-  ></v-select>
+    hide-no-data
+  ></v-autocomplete>
   <!--<:rules="[() => select.length > 0 || 'You must choose at least one']" -->
 </template>
 

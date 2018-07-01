@@ -86,17 +86,25 @@
 
 <script>
   export default {
+    computed: {
+      items () {
+        let items = [
+          { icon: 'apps', title: this.$t('home.search.title'), to: '/' }
+        ]
+        if (!this.$store.state.user.auth) {
+          items.push({ icon: 'fas fa-user', title: this.$t('login.title'), to: '/login' })
+        } else {
+          items.push({ icon: 'fas fa-user-slash', title: this.$t('logout.title'), to: '/login' })
+        }
+        return items
+      }
+    },
     data () {
       return {
         drawer: false,
         miniVariant: true,
         mobileBreakPoint: 960,
         title: 'SelfJob',
-        items: [
-          { icon: 'apps', title: this.$t('home.search.title'), to: '/' },
-          { icon: 'fas fa-user', title: this.$t('login.title'), to: '/login' }
-          // { icon: 'fas fa-user-slash', title: this.$t('logout.title'), to: '/login' }
-        ],
         icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram']
       }
     },
@@ -114,7 +122,7 @@
 </script>
 
 <style lang="stylus">
-  main.content > .content--wrap
+  main.v-content > .v-content__wrap
     display:flex
     flex-flow row wrap
     align-content: space-between
