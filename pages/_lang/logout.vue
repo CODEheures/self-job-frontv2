@@ -34,16 +34,11 @@
           this.compteur++
         }, 1000)
         Api.logout(this.$store.state.user.token)
-          .then((response) => {
+          .finally(() => {
+            clearInterval(interval)
             this.$root.$emit('displaySnack', this.$t('logout.isLogout'))
             document.cookie = process.env.tokenCookieName + '; Max-Age=-99999999;'
             this.$router.push({path: '/'})
-          })
-          .catch(() => {
-            this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
-          })
-          .finally(() => {
-            clearInterval(interval)
             this.$root.$emit('xhr', false)
           })
       }

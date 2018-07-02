@@ -17,13 +17,17 @@ export default function ({ req, store }) {
   items.forEach((item, index) => {
     let trimItem = item.trimLeft()
     if (trimItem.indexOf(process.env.tokenCookieName) === 0) {
-      store.commit('SET_USER_TOKEN', trimItem.substring(process.env.tokenCookieName.length, trimItem.length))
+      let token = trimItem.substring(process.env.tokenCookieName.length, trimItem.length)
+      if (store.state.user.token !== token) {
+        store.commit('SET_USER_TOKEN', token)
+      }
+
       existToken = true
     }
   })
 
   // Unset the old bad token if cookie doesn't exist
-  if (!existToken) { store.commit('UNSET_USER_TOKEN') }
+  if (!existToken) { store.commit('UNSET_USER') }
 
   return null
 }

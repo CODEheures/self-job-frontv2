@@ -45,7 +45,6 @@
           return list
         },
         set () {
-          console.log('list bouge')
         }
       }
     },

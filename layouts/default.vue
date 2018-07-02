@@ -54,14 +54,22 @@
       </v-avatar>
       <v-spacer></v-spacer>
     </v-toolbar>
-    <v-snackbar
-      :timeout="6000"
-      top
-      v-model="snackBar.display"
-    >
-      {{ snackBar.text }}
-      <v-btn flat color="pink" @click.native="snackBar.display = false">{{ $t('generics.close')}}</v-btn>
-    </v-snackbar>
+    <div style="position: absolute; top:0; display: grid; width: 100%; grid-row-gap: 10px">
+      <v-snackbar v-for="snackBar,index in snackbars"
+                  top
+                  :multi-line="snackBar.text.length > 45"
+                  :auto-height="snackBar.text.length > 45"
+                  :key="'snack-'+index"
+                  :timeout="6000"
+                  absolute
+                  v-model="snackBar.display"
+                  style="position: relative !important"
+      >
+        {{ snackBar.text }}
+        <v-btn flat color="pink" @click.native="snackBar.display = false">{{ $t('generics.close')}}</v-btn>
+      </v-snackbar>
+    </div>
+
     <v-content>
       <v-container>
         <nuxt />
@@ -96,6 +104,7 @@
 </template>
 
 <script>
+  import _ from 'lodash'
   export default {
     computed: {
       items () {
@@ -111,11 +120,17 @@
         return items
       }
     },
+    watch: {
+      '$store.state.errors' (val) {
+        if (val.length > 0) {
+          this.displayErrors()
+        }
+      }
+    },
     beforeMount () {
       // listen $xhr root event
       this.$root.$on('displaySnack', (payload) => {
-        this.snackBar.text = payload
-        this.snackBar.display = true
+        this.snackbars.push({text: payload, display: true})
       })
     },
     data () {
@@ -125,20 +140,28 @@
         mobileBreakPoint: 960,
         title: 'SelfJob',
         icons: ['fab fa-facebook', 'fab fa-twitter', 'fab fa-google-plus', 'fab fa-linkedin', 'fab fa-instagram'],
-        snackBar: {
-          display: false,
-          text: ''
-        }
+        snackbars: []
       }
     },
     mounted () {
       if (process.client) {
         this.drawer = this.$vuetify.breakpoint.mdAndUp
+        this.displayErrors()
       }
     },
     methods: {
       goBack () {
         this.$router.go(-1)
+      },
+      displayErrors () {
+        let errorsList = _.sortedUniq(this.$store.state.errors)
+        this.$store.commit('REMOVE_ERRORS')
+
+        errorsList.forEach((errorCode, index) => {
+          setTimeout(() => {
+            this.snackbars.push({text: this.$t('errorsCodes.' + errorCode), display: true})
+          }, 500 * index)
+        })
       }
     }
   }

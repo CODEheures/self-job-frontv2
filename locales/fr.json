@@ -1,4 +1,10 @@
 {
+  "errorsCodes": {
+    "0": "la récupération de vos données personnelles a échoué. Essayez de réactualiser la page ou bien déconnectez-vous et reconnectez-vous",
+    "1": "erreur de type 1",
+    "2": "erreur de type 2",
+    "3": "erreur de type 3"
+  },
   "generics": {
     "close": "fermer",
     "see": "voir",

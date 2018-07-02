@@ -68,7 +68,6 @@
           return list
         },
         set (newList) {
-          console.log('list bouge', newList)
           this.$emit('change', newList)
         }
       }
