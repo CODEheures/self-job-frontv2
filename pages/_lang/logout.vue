@@ -13,6 +13,7 @@
 
 <script>
   import Api from '~/plugins/api.js'
+  import moment from 'moment'
   export default {
     data () {
       return {
@@ -37,8 +38,10 @@
           .finally(() => {
             clearInterval(interval)
             this.$root.$emit('displaySnack', this.$t('logout.isLogout'))
-            document.cookie = process.env.tokenCookieName + '; Max-Age=-99999999;'
-            this.$router.push({path: '/'})
+            document.cookie = process.env.tokenCookieName + this.$store.state.user.token + '; expires=' + moment().subtract(1, 'days').toDate() + '; path=/'
+            setTimeout(() => {
+              this.$router.push({path: '/'})
+            }, 1000)
             this.$root.$emit('xhr', false)
           })
       }

@@ -6,7 +6,7 @@ export const state = () => ({
   user: {
     auth: false,
     token: null,
-    info: null
+    info: {}
   }
 })
 
@@ -22,7 +22,7 @@ export const mutations = {
   SET_USER_TOKEN (state, token) {
     state.user.auth = true
     state.user.token = token
-    state.user.info = null
+    state.user.info = {}
   },
   ADD_ERROR (state, id) {
     state.errors.push(id)
@@ -36,6 +36,6 @@ export const mutations = {
   UNSET_USER (state) {
     state.user.auth = false
     state.user.token = null
-    state.user.info = null
+    state.user.info = {}
   }
 }

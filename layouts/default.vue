@@ -5,11 +5,11 @@
         <v-list class="pa-0">
           <v-list-tile avatar>
             <v-list-tile-avatar>
-              <img src="https://randomuser.me/api/portraits/men/85.jpg" v-if="$store.state.user.auth">
+              <img :src="$store.state.user.info.pictureUrl" v-if="$store.state.user.auth && $store.state.user.info && $store.state.user.pictureUrl">
               <img src="~/assets/images/logonb.png" v-else>
             </v-list-tile-avatar>
             <v-list-tile-content v-if="$store.state.user.auth">
-              <v-list-tile-title>John Leider</v-list-tile-title>
+              <v-list-tile-title>{{ $store.state.user.info.name || 'hello'}}</v-list-tile-title>
             </v-list-tile-content>
             <v-spacer></v-spacer>
             <v-list-tile-action>
@@ -109,13 +109,13 @@
     computed: {
       items () {
         let items = [
-          { icon: 'apps', title: this.$t('home.search.title'), to: '/' }
+          { icon: 'apps', title: this.$t('home.search.title'), to: { name: 'lang', params: { 'lang': this.$store.state.locale } } }
         ]
         if (!this.$store.state.user.auth) {
-          items.push({ icon: 'account_box', title: this.$t('login.title'), to: '/login' })
+          items.push({ icon: 'account_box', title: this.$t('login.title'), to: { name: 'lang-login', params: { 'lang': this.$store.state.locale } } })
         } else {
-          items.push({ icon: 'list', title: this.$t('mines.title'), to: '/adverts/mines' })
-          items.push({ icon: 'exit_to_app', title: this.$t('logout.title'), to: '/logout' })
+          items.push({ icon: 'list', title: this.$t('mines.title'), to: { name: 'lang-adverts-mines', params: { 'lang': this.$store.state.locale } } })
+          items.push({ icon: 'exit_to_app', title: this.$t('logout.title'), to: { name: 'lang-logout', params: { 'lang': this.$store.state.locale } } })
         }
         return items
       }

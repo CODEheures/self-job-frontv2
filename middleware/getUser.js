@@ -3,7 +3,7 @@
  */
 import Api from '~/plugins/api.js'
 export default async function ({ store, route, redirect, app }) {
-  if (store.state.user.auth === true && store.state.user.token !== null && store.state.user.info === null) {
+  if (store.state.user.auth === true && store.state.user.token !== null && Object.keys(store.state.user.info).length === 0) {
     try {
       let response = await Api.getUser(store.state.user.token)
       store.commit('SET_USER', response.data)
