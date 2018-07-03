@@ -105,17 +105,35 @@
 
 <script>
   import _ from 'lodash'
+  import Filters from '~/vendors/filters.js'
   export default {
+    filters: Filters,
     computed: {
       items () {
         let items = [
-          { icon: 'apps', title: this.$t('home.search.title'), to: { name: 'lang', params: { 'lang': this.$store.state.locale } } }
+          {
+            icon: 'apps',
+            title: this.$t('home.search.title'),
+            to: this.$options.filters.routeI18nReformat({ name: 'lang', params: { 'lang': this.$store.state.locale } })
+          }
         ]
         if (!this.$store.state.user.auth) {
-          items.push({ icon: 'account_box', title: this.$t('login.title'), to: { name: 'lang-login', params: { 'lang': this.$store.state.locale } } })
+          items.push({
+            icon: 'account_box',
+            title: this.$t('login.title'),
+            to: this.$options.filters.routeI18nReformat({ name: 'lang-login', params: { 'lang': this.$store.state.locale } })
+          })
         } else {
-          items.push({ icon: 'list', title: this.$t('mines.title'), to: { name: 'lang-adverts-mines', params: { 'lang': this.$store.state.locale } } })
-          items.push({ icon: 'exit_to_app', title: this.$t('logout.title'), to: { name: 'lang-logout', params: { 'lang': this.$store.state.locale } } })
+          items.push({
+            icon: 'list',
+            title: this.$t('mines.title'),
+            to: this.$options.filters.routeI18nReformat({ name: 'lang-adverts-mines', params: { 'lang': this.$store.state.locale } })
+          })
+          items.push({
+            icon: 'exit_to_app',
+            title: this.$t('logout.title'),
+            to: this.$options.filters.routeI18nReformat({ name: 'lang-logout', params: { 'lang': this.$store.state.locale } })
+          })
         }
         return items
       }

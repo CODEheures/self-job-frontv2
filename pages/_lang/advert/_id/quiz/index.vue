@@ -38,7 +38,7 @@
           </v-flex>
         </v-layout>
         <v-btn :disabled="!valid" nuxt
-               :to="{name: 'advert-id-quiz-questions', params: {id: $route.params.id}, query: {email: this.email, phone: this.phone, phoneCountry: this.countryCode}}">
+               :to="{name: 'lang-advert-id-quiz-questions', params: {lang: $store.state.locale, id: $route.params.id}, query: {email: this.email, phone: this.phone, phoneCountry: this.countryCode}} | routeI18nReformat ">
           {{ $t('quiz.submit')}}
         </v-btn>
         <v-btn @click="clear">{{ $t('quiz.clear' )}}</v-btn>
@@ -50,9 +50,10 @@
 <script>
   import countries from '~/vendors/countriesCode.js'
   import { AsYouType, isValidNumber, formatNumber, getNumberType } from 'libphonenumber-js'
-
+  import Filters from '~/vendors/filters.js'
   export default {
     asYouType: null,
+    filters: Filters,
     watch: {
       countryCode (val) {
         this.phone = ''

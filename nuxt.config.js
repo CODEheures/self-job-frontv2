@@ -71,6 +71,7 @@ module.exports = {
       '~/vendors/countriesCode',
       '~/vendors/filters',
       '~/vendors/loaderJs.js',
+      '~/vendors/routeI18n.js',
       '~/plugins/vuetify.js',
       '~/plugins/api.js',
       '~/plugins/placesAutocomplete.js',

@@ -29,7 +29,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="primary" flat @click="login" :disabled="!isComplete" v-if="!$store.state.user.auth">{{ $t('login.title') }}</v-btn>
-          <v-btn color="primary" flat nuxt :to="{name: 'logout'}" v-else>{{ $t('login.logout') }}</v-btn>
+          <v-btn color="primary" flat nuxt :to="{name: 'lang-logout', params: {lang: $store.state.locale}} | routeI18nReformat " v-else>{{ $t('login.logout') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
@@ -38,7 +38,9 @@
 
 <script>
   import Api from '~/plugins/api.js'
+  import Filters from '~/vendors/filters.js'
   export default {
+    filters: Filters,
     data () {
       return {
         hidePass: true,
@@ -67,13 +69,13 @@
             let tokenCookie = encodeURIComponent(response.data.access_token)
             document.cookie = process.env.tokenCookieName + tokenCookie + '; max-age=' + response.data.expires_in + '; path=/'
             if ('redirectAfterLoginSuccess' in this.$route.query) {
-              this.$router.push({
+              this.$router.push(this.$options.filters.routeI18nReformat({
                 name: this.$route.query.redirectAfterLoginSuccess.name,
                 params: this.$route.query.redirectAfterLoginSuccess.params,
                 query: this.$route.query.redirectAfterLoginSuccess.query
-              })
+              }))
             } else {
-              this.$router.push({path: '/'})
+              this.$router.push(this.$options.filters.routeI18nReformat({name: 'lang', params: {lang: this.$store.state.locale}}))
             }
           })
           .catch((error) => {

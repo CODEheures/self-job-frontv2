@@ -40,7 +40,7 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn flat color="orange" nuxt :to="{name: 'advert-id', params: {id: advert.id}, query:{mileage: advert.mileage}}">{{ $t('generics.see') }}</v-btn>
+              <v-btn flat color="orange" nuxt :to="{name: 'lang-advert-id', params: {lang: $store.state.locale, id: advert.id}, query:{mileage: advert.mileage}} | routeI18nReformat ">{{ $t('generics.see') }}</v-btn>
             </v-card-actions>
           </v-card>
         </v-flex>

@@ -58,7 +58,7 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn flat color="primary" nuxt :to="{name: 'advert-id-quiz', params: {id: advert.id}}" :disabled="!allChecked">{{ $t('advert.button') }}</v-btn>
+          <v-btn flat color="primary" nuxt :to="{name: 'lang-advert-id-quiz', params: {lang: $store.state.locale, id: advert.id}} | routeI18nReformat" :disabled="!allChecked">{{ $t('advert.button') }}</v-btn>
         </v-card-actions>
       </v-card>
       <div class="text-xs-center" v-else>

@@ -41,7 +41,9 @@
   import AutocompleteMapboxInput from '~/components/generics/AutocompleteMapboxInput'
   import EditableChipsList from '~/components/generics/EditableChipsList'
   import _ from 'lodash'
+  import Filters from '~/vendors/filters.js'
   export default {
+    filters: Filters,
     components: {
       // AutocompleteGoogleplaceInput,
       AutocompleteMapboxInput,
@@ -75,7 +77,7 @@
           'position': {latitude: this.place.coords.lat, longitude: this.place.coords.lon},
           'mileage': {min: 0, max: this.mileage, stop: this.mileageStop}
         }
-        this.$router.push({path: '/adverts', query: params})
+        this.$router.push(this.$options.filters.routeI18nReformat({name: 'lang-adverts', params: { lang: this.$store.state.locale }, query: params}))
       }
     }
   }
