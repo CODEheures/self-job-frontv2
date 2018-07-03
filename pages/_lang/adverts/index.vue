@@ -77,7 +77,6 @@
             0,
             this.$store.state.locale
           )
-          this.$root.$emit('xhr', false)
           this.adverts = response.data.adverts
           this.totalHits = response.data.totalHits
           this.haveAFirstSubmited = true
@@ -85,8 +84,9 @@
             this.$root.$emit('displaySnack', this.$t('home.search.zeroResult'))
           }
         } catch (e) {
-          this.$root.$emit('xhr', false)
           this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
+        } finally {
+          this.$root.$emit('xhr', false)
         }
       },
       formatMyDate (myDate) {

@@ -58,7 +58,27 @@
     "button": "Accéder au questionnaire"
   },
   "mines": {
-    "title": "mes annonces"
+    "title": "mes annonces",
+    "tableTh1": "Titre",
+    "tableTh2": "Réponses",
+    "tableTh3": "Publication",
+    "tableTh4": "Action",
+    "verticalMenu1": "Voir",
+    "verticalMenu2": "Supprimer",
+    "verticalMenu3": "Modifier",
+    "verticalMenu4": "Publier",
+    "verticalMenu5": "Dépublier",
+    "verticalHead1": "Annonce",
+    "verticalHead2": "Réponses",
+    "emptyMessage": "Vous n'avez encore créé aucune annonce",
+    "confirmDialogTitle": "Confirmation",
+    "confirmDialogMessage": "Confirmez la supression de cette annonce?",
+    "confirmDialogBtnCancel": "Annuler",
+    "confirmDialogBtnConfirm": "Supprimer",
+    "modalAnswersTitle": "Scores",
+    "modalAnswersTh1": "Coordonnées",
+    "modalAnswersTh2": "Score",
+    "modalAnswersCloseBtn": "Fermer"
   },
   "quiz": {
     "infoForAccess": "remplir Email et téléphone pour acceder au questionnaire #savoirÊtre de l'employeur",

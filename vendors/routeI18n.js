@@ -4,7 +4,6 @@
  */
 export default {
   reformat (route) {
-    console.log('reformat route:', route.name)
     if (
       !!route.name &&
       route.name.indexOf('lang') === 0 &&

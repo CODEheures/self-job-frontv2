@@ -91,14 +91,14 @@
         try {
           this.$root.$emit('xhr', true)
           let response = await Api.showAdvert(this.$route.params.id)
-          this.$root.$emit('xhr', false)
           response.data.requirements.forEach((req, index) => {
             this.check[index] = false
           })
           this.advert = response.data
         } catch (e) {
-          this.$root.$emit('xhr', false)
           this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
+        } finally {
+          this.$root.$emit('xhr', false)
         }
       },
       formatMyDate (myDate) {
