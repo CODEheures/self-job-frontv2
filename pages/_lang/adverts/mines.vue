@@ -1,6 +1,6 @@
 <!--
   This page display results of auth user adverts
-  TODO Edit redirection page
+  TODO Edit (redirection page) + Answer response
 -->
 <template>
   <v-layout justify-center align-center>
@@ -46,9 +46,15 @@
 <script>
   import Api from '~/plugins/api.js'
   import Filters from '~/vendors/filters.js'
+  import echo from '~/vendors/echo.js'
   export default {
     middleware: 'auth',
     filters: Filters,
+    watch: {
+      adverts () {
+        echo.subscribeToAnswers(this.$echo, this.adverts, (id, responsesCount) => { this.updateAdvertResponseCount(id, responsesCount) })
+      }
+    },
     data () {
       return {
         adverts: [],
@@ -82,6 +88,7 @@
     },
     mounted () {
       this.getMyAdverts()
+      echo.subscribeToNewAdvert(this.$echo, this.$store.state.user.info.company.id, () => { this.getMyAdverts(true) })
     },
     methods: {
       async getMyAdverts (onBack = false) {
@@ -120,6 +127,13 @@
           this.$root.$emit('xhr', false)
           this.dialogDelete.id = null
         }
+      },
+      updateAdvertResponseCount (id, responsesCount) {
+        this.adverts.forEach((advert) => {
+          if (advert.id === id) {
+            advert.responses_count = responsesCount
+          }
+        })
       }
     }
   }

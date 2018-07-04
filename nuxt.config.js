@@ -22,7 +22,8 @@ module.exports = {
     '~/plugins/vuetify.js',
     '~/plugins/api.js',
     '~/plugins/i18n.js',
-    {src: '~/plugins/placesAutocomplete.js', ssr: false}
+    {src: '~/plugins/placesAutocomplete.js', ssr: false},
+    {src: '~/plugins/startEcho.js', ssr: false}
   ],
   css: [
     '~/assets/style/app.styl'
@@ -72,6 +73,7 @@ module.exports = {
       '~/vendors/filters',
       '~/vendors/loaderJs.js',
       '~/vendors/routeI18n.js',
+      '~/vendors/echo.js',
       '~/plugins/vuetify.js',
       '~/plugins/api.js',
       '~/plugins/placesAutocomplete.js',
@@ -102,7 +104,8 @@ module.exports = {
    */
   env: {
     api: {
-      href: process.env.isDev === 'true' ? 'http://api.selfjob.test/api' : 'https://api-selfjob.codeheures.fr/api'
+      href: process.env.isDev === 'true' ? 'http://api.selfjob.test/api' : 'https://api-selfjob.codeheures.fr/api',
+      socketIo: process.env.isDev === 'true' ? 'http://api.selfjob.test:6001' : 'https://api-selfjob.codeheures.fr:6001'
     },
     fallbackLocale: 'fr',
     googleMapApiKey: process.env.isDev === 'true' ? '' : 'AIzaSyB6YONdutLGDWC70gK9f3VZp_3_eIE7Alw',

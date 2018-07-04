@@ -75,11 +75,11 @@
                 query: this.$route.query.redirectAfterLoginSuccess.query
               }))
             } else {
-              this.$router.push(this.$options.filters.routeI18nReformat({name: 'lang', params: {lang: this.$store.state.locale}}))
+              this.$router.push(this.$options.filters.routeI18nReformat({name: 'lang-adverts-mines', params: {lang: this.$store.state.locale}}))
             }
           })
           .catch((error) => {
-            if (error.response.status === 401) {
+            if (!!error.response && error.response.status === 401) {
               this.$root.$emit('displaySnack', this.$t('login.invalidCredentials'))
             } else {
               this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
