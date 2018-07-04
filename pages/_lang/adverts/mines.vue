@@ -24,7 +24,10 @@
     >
       <template slot="items" slot-scope="props">
         <td><nuxt-link :to="$options.filters.routeI18nReformat({name: 'lang-advert-id', params: {lang: $store.state.locale, id: props.item.id}})">{{ props.item.title }}</nuxt-link></td>
-        <td class="text-xs-center">{{ props.item.responses_count.toString() }}</td>
+        <td class="text-xs-center">
+          <nuxt-link v-if="props.item.responses_count > 0" :to="$options.filters.routeI18nReformat({name: 'lang-advert-id-answers', params: {lang: $store.state.locale, id: props.item.id}})">{{ props.item.responses_count.toString() }}</nuxt-link>
+          <span v-else>{{ props.item.responses_count.toString() }}</span>
+        </td>
         <td class="text-xs-center">
           <v-icon v-if="props.item.is_publish" small @click="publishAdvert(props.item)">visibility</v-icon>
           <v-icon v-else small @click="publishAdvert(props.item)">visibility_off</v-icon>

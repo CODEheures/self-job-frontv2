@@ -74,11 +74,13 @@
     "confirmDialogTitle": "Confirmation",
     "confirmDialogMessage": "Confirmez la supression de cette annonce?",
     "confirmDialogBtnCancel": "Annuler",
-    "confirmDialogBtnConfirm": "Supprimer",
-    "modalAnswersTitle": "Scores",
-    "modalAnswersTh1": "Coordonnées",
-    "modalAnswersTh2": "Score",
-    "modalAnswersCloseBtn": "Fermer"
+    "confirmDialogBtnConfirm": "Supprimer"
+  },
+  "answers": {
+    "emptyMessage": "Aucun score pour cette annonce",
+    "answersTitle": "Scores",
+    "answersTh1": "Coordonnées",
+    "answersTh2": "Score"
   },
   "quiz": {
     "infoForAccess": "remplir Email et téléphone pour acceder au questionnaire #savoirÊtre de l'employeur",
