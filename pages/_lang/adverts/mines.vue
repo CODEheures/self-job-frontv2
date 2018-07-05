@@ -93,6 +93,10 @@
       this.getMyAdverts()
       echo.subscribeToNewAdvert(this.$echo, this.$store.state.user.info.company.id, () => { this.getMyAdverts(true) })
     },
+    destroyed () {
+      echo.unsubscribeToAnswers(this.$echo, this.adverts)
+      echo.unsubscribeToNewAdvert(this.$echo, this.$store.state.user.info.company.id)
+    },
     methods: {
       async getMyAdverts (onBack = false) {
         try {

@@ -34,11 +34,20 @@ export default {
    */
   subscribeToNewAdvert (vueEchoObject, companyId, callBack) {
     if (vueEchoObject instanceof Echo) {
-      vueEchoObject.leave('update-adverts-for-company.' + companyId)
       vueEchoObject.private('update-adverts-for-company.' + companyId)
         .listen('UpdateAdvertEvent', () => {
           callBack()
         })
+    }
+  },
+  /**
+   * unsubscribe of new advert echo
+   * @param vueEchoObject
+   * @param companyId
+   */
+  unsubscribeToNewAdvert (vueEchoObject, companyId) {
+    if (vueEchoObject instanceof Echo) {
+      vueEchoObject.leave('update-adverts-for-company.' + companyId)
     }
   },
   /**
@@ -50,12 +59,18 @@ export default {
   subscribeToAnswers (vueEchoObject, adverts, callBack) {
     if (vueEchoObject instanceof Echo) {
       adverts.forEach(function (advert) {
-        // leave before to ensure not double subscription
-        vueEchoObject.leave('new-answer-on.' + advert.id)
         vueEchoObject.private('new-answer-on.' + advert.id)
           .listen('NewAnswerEvent', function (event) {
             callBack(advert.id, event.numberOfAnswers)
           })
+      })
+    }
+  },
+  unsubscribeToAnswers (vueEchoObject, adverts) {
+    if (vueEchoObject instanceof Echo) {
+      adverts.forEach(function (advert) {
+        // leave before to ensure not double subscription
+        vueEchoObject.leave('new-answer-on.' + advert.id)
       })
     }
   }

@@ -22,8 +22,7 @@ module.exports = {
     '~/plugins/vuetify.js',
     '~/plugins/api.js',
     '~/plugins/i18n.js',
-    {src: '~/plugins/placesAutocomplete.js', ssr: false},
-    {src: '~/plugins/startEcho.js', ssr: false}
+    {src: '~/plugins/placesAutocomplete.js', ssr: false}
   ],
   css: [
     '~/assets/style/app.styl'
@@ -36,7 +35,7 @@ module.exports = {
   ** Router
    */
   router: {
-    middleware: ['getToken', 'getUser', 'i18n'],
+    middleware: ['getToken', 'getUser', 'startEcho', 'i18n'],
     parseQuery: function (query) {
       if (query.length > 0) {
         try {
