@@ -10,7 +10,7 @@ const Filters = {
     value = value.toString()
     return value.toUpperCase()
   },
-  'routeI18nReformat': function (route) {
+  routeI18nReformat: function (route) {
     return routeI18n.reformat(route)
   }
 }

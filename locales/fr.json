@@ -9,13 +9,19 @@
     "close": "fermer",
     "see": "voir",
     "add": "ajouter",
+    "delete": "supprimer",
     "remove": "retirer",
+    "quit": "quitter",
     "email": "e-mail",
     "phone": "téléphone",
     "country": "pays",
     "required": "obligatoire",
     "invalidEmail": "e-mail invalide",
-    "invalidPhone": "numéro invalide"
+    "invalidPhone": "numéro invalide",
+    "continue": "Suivant",
+    "cancel": "annuler",
+    "back": "précédent",
+    "valid": "valider"
   },
   "footer": {
     "description": "SelfJob, le recrutement sans CV #savoirFaire #savoirÊtre"
@@ -72,9 +78,18 @@
     "verticalHead2": "Réponses",
     "emptyMessage": "Vous n'avez encore créé aucune annonce",
     "confirmDialogTitle": "Confirmation",
-    "confirmDialogMessage": "Confirmez la supression de cette annonce?",
-    "confirmDialogBtnCancel": "Annuler",
-    "confirmDialogBtnConfirm": "Supprimer"
+    "confirmDialogMessage": "Confirmez la supression de cette annonce?"
+  },
+  "create": {
+    "title": "créer une annonce",
+    "quitDialogTitle": "Quitter la création?",
+    "quitDialogMessage": "En quittant vous perdrez toutes vos modifications. Confirmez-vous?",
+    "stepOneTitle": "Création de l'annonce",
+    "stepOneSubTitle": "Remplissez la carte ci-dessous pour constituer votre annonce",
+    "stepOneShareOption1": "Cette annonce est gérée et visible par tous les gestionnaires de mon groupe ",
+    "stepOneShareOption2": "Cette annonce n'est gérée et visible que par moi",
+    "stepTwoTitle": "Création du questionnaire #savoirÊtre",
+    "stepTwoSubTitle": "Ajouter des questions #savoirÊtre à votre questionnaire"
   },
   "answers": {
     "emptyMessage": "Aucun score pour cette annonce",

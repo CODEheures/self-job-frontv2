@@ -1,6 +1,6 @@
 <!--
   This page display results of auth user adverts
-  TODO Edit (redirection page) + Answer response
+  TODO Edit (redirection page)
 -->
 <template>
   <v-layout justify-center align-center>
@@ -11,38 +11,47 @@
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" flat @click="dialogDelete={visible: false, id: null}">{{ $t('mines.confirmDialogBtnCancel') }}</v-btn>
-          <v-btn color="red ligthen-2" dark @click="delAdvert">{{ $t('mines.confirmDialogBtnConfirm') }}</v-btn>
+          <v-btn color="primary" flat @click="dialogDelete={visible: false, id: null}">{{ $t('generics.cancel') }}</v-btn>
+          <v-btn color="red ligthen-2" dark @click="delAdvert">{{ $t('generics.delete') }}</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <v-data-table
-      :headers="headers"
-      :items="adverts"
-      hide-actions
-      class="elevation-1"
-    >
-      <template slot="items" slot-scope="props">
-        <td><nuxt-link :to="$options.filters.routeI18nReformat({name: 'lang-advert-id', params: {lang: $store.state.locale, id: props.item.id}})">{{ props.item.title }}</nuxt-link></td>
-        <td class="text-xs-center">
-          <nuxt-link v-if="props.item.responses_count > 0" :to="$options.filters.routeI18nReformat({name: 'lang-advert-id-answers', params: {lang: $store.state.locale, id: props.item.id}})">{{ props.item.responses_count.toString() }}</nuxt-link>
-          <span v-else>{{ props.item.responses_count.toString() }}</span>
-        </td>
-        <td class="text-xs-center">
-          <v-icon v-if="props.item.is_publish" small @click="publishAdvert(props.item)">visibility</v-icon>
-          <v-icon v-else small @click="publishAdvert(props.item)">visibility_off</v-icon>
-        </td>
-        <td class="justify-center layout px-0">
-          <v-icon :disabled="!props.item.is_updatable" small @click="" class="mr-2">edit</v-icon>
-          <v-icon :disabled="!props.item.is_deletable" small @click.stop="dialogDelete={visible: true, id: props.item.id}">delete</v-icon>
-        </td>
-      </template>
-      <template slot="no-data">
-        <v-alert :value="adverts.length === 0" color="error" icon="warning">
-          {{ $t('mines.emptyMessage')}}
-        </v-alert>
-      </template>
-    </v-data-table>
+    <v-card>
+      <v-card-title class="headline" primary-title>
+        {{ $t('mines.title') | capitalize }}
+        <v-spacer></v-spacer>
+        <v-btn color="primary" nuxt :to="$options.filters.routeI18nReformat({name: 'lang-advert-create', params: {lang: $store.state.locale}})">{{ $t('generics.add') }}</v-btn>
+      </v-card-title>
+      <v-card-text>
+        <v-data-table
+          :headers="headers"
+          :items="adverts"
+          hide-actions
+        >
+          <template slot="items" slot-scope="props">
+            <td><nuxt-link :to="$options.filters.routeI18nReformat({name: 'lang-advert-id', params: {lang: $store.state.locale, id: props.item.id}})">{{ props.item.title }}</nuxt-link></td>
+            <td class="text-xs-center">
+              <nuxt-link v-if="props.item.responses_count > 0" :to="$options.filters.routeI18nReformat({name: 'lang-advert-id-answers', params: {lang: $store.state.locale, id: props.item.id}})">{{ props.item.responses_count.toString() }}</nuxt-link>
+              <span v-else>{{ props.item.responses_count.toString() }}</span>
+            </td>
+            <td class="text-xs-center">
+              <v-icon v-if="props.item.is_publish" small @click="publishAdvert(props.item)">visibility</v-icon>
+              <v-icon v-else small @click="publishAdvert(props.item)">visibility_off</v-icon>
+            </td>
+            <td class="justify-center layout px-0">
+              <v-icon :disabled="!props.item.is_updatable" small @click="" class="mr-2">edit</v-icon>
+              <v-icon :disabled="!props.item.is_deletable" small @click.stop="dialogDelete={visible: true, id: props.item.id}">delete</v-icon>
+            </td>
+          </template>
+          <template slot="no-data">
+            <v-alert :value="adverts.length === 0" color="error" icon="warning">
+              {{ $t('mines.emptyMessage')}}
+            </v-alert>
+          </template>
+        </v-data-table>
+      </v-card-text>
+    </v-card>
+
   </v-layout>
 </template>
 

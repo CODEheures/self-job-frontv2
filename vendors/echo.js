@@ -66,6 +66,11 @@ export default {
       })
     }
   },
+  /**
+   * unsubscribe of answers echo
+   * @param vueEchoObject
+   * @param adverts
+   */
   unsubscribeToAnswers (vueEchoObject, adverts) {
     if (vueEchoObject instanceof Echo) {
       adverts.forEach(function (advert) {
