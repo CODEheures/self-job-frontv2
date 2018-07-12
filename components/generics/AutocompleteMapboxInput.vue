@@ -80,7 +80,7 @@
           this.mapBoxResponse = mapBoxResponseFormattedItems
         }).catch(function (e) {
           // null
-        }).finally(() => {
+        }).then(() => {
           this.loading = false
         })
       }

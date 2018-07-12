@@ -11,6 +11,5 @@ export default async function ({ store, route, redirect, app }) {
       store.commit('ADD_ERROR', 0)
     }
   }
-
   return null
 }

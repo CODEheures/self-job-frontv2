@@ -23,7 +23,9 @@
         </v-stepper-step>
 
         <v-stepper-content step="1">
-          <v-card color="grey lighten-1" class="mb-5" height="200px"></v-card>
+          <v-card color="grey lighten-1" class="mb-5" height="200px">
+
+          </v-card>
           <v-btn color="primary" @click="step = 2">{{ $t('generics.continue') }}</v-btn>
           <v-btn flat @click="dialogQuit = true">{{ $t('generics.cancel') }}</v-btn>
         </v-stepper-content>
@@ -56,7 +58,20 @@
     data () {
       return {
         dialogQuit: false,
-        step: 1
+        step: 1,
+        advert: {
+          title: '',
+          description: '',
+          contract: '',
+          tags: [],
+          requirements: [],
+          place: {
+            formatted_address: '',
+            lat: '',
+            lon: ''
+          },
+          is_internal_private: false
+        }
       }
     }
   }

@@ -7,7 +7,7 @@ module.exports = {
     title: 'selfjob',
     meta: [
       { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui' },
       { hid: 'description', name: 'description', content: 'Le recrutement humain sans CV' }
     ],
     link: [
@@ -22,6 +22,7 @@ module.exports = {
     '~/plugins/vuetify.js',
     '~/plugins/api.js',
     '~/plugins/i18n.js',
+    '~/plugins/setIOBroadcaster.js',
     {src: '~/plugins/placesAutocomplete.js', ssr: false}
   ],
   css: [
@@ -35,7 +36,7 @@ module.exports = {
   ** Router
    */
   router: {
-    middleware: ['getToken', 'getUser', 'startEcho', 'i18n'],
+    middleware: ['getToken', 'getUser', 'i18n'],
     parseQuery: function (query) {
       if (query.length > 0) {
         try {
@@ -104,7 +105,7 @@ module.exports = {
   env: {
     api: {
       href: process.env.isDev === 'true' ? 'http://api.selfjob.test/api' : 'https://api-selfjob.codeheures.fr/api',
-      socketIo: process.env.isDev === 'true' ? 'http://api.selfjob.test:6001' : 'https://api-selfjob.codeheures.fr:6001'
+      socketIo: process.env.isDev === 'true' ? 'http://echo.selfjob.test' : 'https://api-selfjob.codeheures.fr:6001'
     },
     fallbackLocale: 'fr',
     googleMapApiKey: process.env.isDev === 'true' ? '' : 'AIzaSyB6YONdutLGDWC70gK9f3VZp_3_eIE7Alw',

@@ -59,7 +59,7 @@
           .catch(() => {
             this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
           })
-          .finally(() => {
+          .then(() => {
             this.$root.$emit('xhr', false)
           })
       },

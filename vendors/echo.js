@@ -5,36 +5,38 @@ import Echo from 'laravel-echo'
 
 export default {
   /**
-   * Return initialized Echo Object
-   * @param token
+   * Initialized once $echo Echo Object in $root.$options Vue instance
+   * @param VueRootInstance
    * @returns {Echo}
    */
-  getEcho (token) {
-    if (process.client) {
-      window.io = require('socket.io-client')
-    } else {
-      global['io'] = require('socket.io-client')
-    }
-
-    return new Echo({
-      broadcaster: 'socket.io',
-      host: process.env.api.socketIo,
-      auth: {
-        headers: {
-          Authorization: 'Bearer ' + token
+  getEcho (VueRootInstance) {
+    if (!VueRootInstance.$options.$echo && VueRootInstance.$store.state.user.token !== null) {
+      VueRootInstance.$options.$echo = new Echo({
+        broadcaster: 'socket.io',
+        host: process.env.api.socketIo,
+        auth: {
+          headers: {
+            Authorization: 'Bearer ' + VueRootInstance.$store.state.user.token
+          }
         }
-      }
-    })
+      })
+      console.log('Vue $root', VueRootInstance)
+      return true
+    } else if (VueRootInstance.$options.$echo instanceof Echo) {
+      return true
+    } else {
+      return false
+    }
   },
   /**
    * Init a subscribe to new advert event and lauch a callback when a new advert is emmited
-   * @param vueEchoObject
+   * @param VueRootInstance
    * @param companyId
    * @param callBack
    */
-  subscribeToNewAdvert (vueEchoObject, companyId, callBack) {
-    if (vueEchoObject instanceof Echo) {
-      vueEchoObject.private('update-adverts-for-company.' + companyId)
+  subscribeToNewAdvert (VueRootInstance, companyId, callBack) {
+    if (this.getEcho(VueRootInstance)) {
+      VueRootInstance.$options.$echo.private('update-adverts-for-company.' + companyId)
         .listen('UpdateAdvertEvent', () => {
           callBack()
         })
@@ -42,24 +44,24 @@ export default {
   },
   /**
    * unsubscribe of new advert echo
-   * @param vueEchoObject
+   * @param VueRootInstance
    * @param companyId
    */
-  unsubscribeToNewAdvert (vueEchoObject, companyId) {
-    if (vueEchoObject instanceof Echo) {
-      vueEchoObject.leave('update-adverts-for-company.' + companyId)
+  unsubscribeToNewAdvert (VueRootInstance, companyId) {
+    if (this.getEcho(VueRootInstance)) {
+      VueRootInstance.$options.$echo.leave('update-adverts-for-company.' + companyId)
     }
   },
   /**
    * Init a subscribe to new answer event on each advert lauch a callback when a new answer is emmited on an advert
-   * @param vueEchoObject
+   * @param VueRootInstance
    * @param adverts
    * @param callBack(id of advert to update, number of the new response_count)
    */
-  subscribeToAnswers (vueEchoObject, adverts, callBack) {
-    if (vueEchoObject instanceof Echo) {
+  subscribeToAnswers (VueRootInstance, adverts, callBack) {
+    if (this.getEcho(VueRootInstance)) {
       adverts.forEach(function (advert) {
-        vueEchoObject.private('new-answer-on.' + advert.id)
+        VueRootInstance.$options.$echo.private('new-answer-on.' + advert.id)
           .listen('NewAnswerEvent', function (event) {
             callBack(advert.id, event.numberOfAnswers)
           })
@@ -68,14 +70,13 @@ export default {
   },
   /**
    * unsubscribe of answers echo
-   * @param vueEchoObject
+   * @param VueRootInstance
    * @param adverts
    */
-  unsubscribeToAnswers (vueEchoObject, adverts) {
-    if (vueEchoObject instanceof Echo) {
+  unsubscribeToAnswers (VueRootInstance, adverts) {
+    if (this.getEcho(VueRootInstance)) {
       adverts.forEach(function (advert) {
-        // leave before to ensure not double subscription
-        vueEchoObject.leave('new-answer-on.' + advert.id)
+        VueRootInstance.$root.$options.$echo.leave('new-answer-on.' + advert.id)
       })
     }
   }

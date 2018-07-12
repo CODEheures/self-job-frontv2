@@ -64,7 +64,7 @@
     filters: Filters,
     watch: {
       adverts () {
-        echo.subscribeToAnswers(this.$echo, this.adverts, (id, responsesCount) => { this.updateAdvertResponseCount(id, responsesCount) })
+        echo.subscribeToAnswers(this.$root, this.adverts, (id, responsesCount) => { this.updateAdvertResponseCount(id, responsesCount) })
       }
     },
     data () {
@@ -100,11 +100,11 @@
     },
     mounted () {
       this.getMyAdverts()
-      echo.subscribeToNewAdvert(this.$echo, this.$store.state.user.info.company.id, () => { this.getMyAdverts(true) })
+      echo.subscribeToNewAdvert(this.$root, this.$store.state.user.info.company.id, () => { this.getMyAdverts(true) })
     },
     destroyed () {
-      echo.unsubscribeToAnswers(this.$echo, this.adverts)
-      echo.unsubscribeToNewAdvert(this.$echo, this.$store.state.user.info.company.id)
+      echo.unsubscribeToAnswers(this.$root, this.adverts)
+      echo.unsubscribeToNewAdvert(this.$root, this.$store.state.user.info.company.id)
     },
     methods: {
       async getMyAdverts (onBack = false) {

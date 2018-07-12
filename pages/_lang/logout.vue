@@ -40,7 +40,9 @@
           this.compteur++
         }, 1000)
         Api.logout(this.$store.state.user.token)
-          .finally(() => {
+          .then()
+          .catch()
+          .then(() => {
             clearInterval(interval)
             this.$root.$emit('displaySnack', this.$t('logout.isLogout'))
             document.cookie = process.env.tokenCookieName + this.$store.state.user.token + '; expires=' + moment().subtract(1, 'days').toDate() + '; path=/'

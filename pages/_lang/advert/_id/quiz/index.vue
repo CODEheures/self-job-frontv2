@@ -14,15 +14,14 @@
         ></v-text-field>
         <v-layout row wrap>
           <v-flex xs12 md3>
-            <v-select
+            <v-autocomplete
               :items="countryCodes"
               v-model="countryCode"
               :label="$t('generics.country')"
               :rules="[rules.required]"
-              autocomplete
               single-line
               required
-            ></v-select>
+            ></v-autocomplete>
           </v-flex>
           <v-flex xs12 md9>
             <v-text-field
