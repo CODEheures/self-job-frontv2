@@ -1,6 +1,11 @@
 import axios from 'axios'
 
-const apiDomain = process.env.api.href
+let apiDomain = ''
+if (process.server) {
+  apiDomain = process.env.api.href_server
+} else {
+  apiDomain = process.env.api.href_client
+}
 
 const routes = {
   domain: apiDomain,
