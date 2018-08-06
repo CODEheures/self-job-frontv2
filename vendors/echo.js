@@ -20,7 +20,6 @@ export default {
           }
         }
       })
-      console.log('Vue $root', VueRootInstance)
       return true
     } else if (VueRootInstance.$options.$echo instanceof Echo) {
       return true
