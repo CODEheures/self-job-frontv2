@@ -9,7 +9,7 @@
     required
     clearable
     :label="$t('home.search.place')"
-    prepend-icon="place"
+    :prepend-icon="!noicon ? 'place' : ''"
     @place="setPlace"
    />
 </template>
@@ -24,6 +24,10 @@
     props: {
       place: {
         type: Object
+      },
+      noicon: {
+        type: Boolean,
+        default: false
       }
     },
     data () {

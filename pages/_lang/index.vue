@@ -37,7 +37,6 @@
 </template>
 
 <script>
-  // import AutocompleteGoogleplaceInput from '~/components/generics/AutocompleteGoogleplaceInput'
   import AutocompleteMapboxInput from '~/components/generics/AutocompleteMapboxInput'
   import EditableChipsList from '~/components/generics/EditableChipsList'
   import _ from 'lodash'
@@ -45,7 +44,6 @@
   export default {
     filters: Filters,
     components: {
-      // AutocompleteGoogleplaceInput,
       AutocompleteMapboxInput,
       EditableChipsList
     },

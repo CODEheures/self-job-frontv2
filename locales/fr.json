@@ -88,6 +88,16 @@
     "stepOneSubTitle": "Remplissez la carte ci-dessous pour constituer votre annonce",
     "stepOneShareOption1": "Cette annonce est gérée et visible par tous les gestionnaires de mon groupe ",
     "stepOneShareOption2": "Cette annonce n'est gérée et visible que par moi",
+    "form" : {
+      "title": "titre de votre annonce",
+      "contract": "contrat (ex: cdd, cdi, freelance...)",
+      "description": "Description du poste",
+      "tags": "mots clés",
+      "requirements": "éxigences",
+      "options": "options",
+      "addImage": "Ajouter une image",
+      "removeImage": "Retirer cette image"
+    },
     "stepTwoTitle": "Création du questionnaire #savoirÊtre",
     "stepTwoSubTitle": "Ajouter des questions #savoirÊtre à votre questionnaire"
   },

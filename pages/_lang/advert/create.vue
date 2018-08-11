@@ -23,8 +23,88 @@
         </v-stepper-step>
 
         <v-stepper-content step="1">
-          <v-card color="grey lighten-1" class="mb-5" height="200px">
+          <v-card color="grey lighten-5" class="mb-5">
+            <v-form ref="form" v-model="valid">
+              <v-container>
+                <v-layout row wrap>
+                  <v-flex xs12>
+                    <v-text-field
+                      v-model="advert.title"
+                      :label="$t('create.form.title')"
+                      clearable
+                      :rules="[rules.required]"
+                    ></v-text-field>
+                    <v-text-field
+                      v-model="advert.contract"
+                      :label="$t('create.form.contract')"
+                      clearable
+                      :rules="[rules.required]"
+                    ></v-text-field>
+                    <autocomplete-mapbox-input v-model="advert.place" noicon/>
+                    <v-textarea
+                      v-model="advert.description"
+                      auto-grow
+                      rows="1"
+                      :rules="[rules.required]"
+                      :label="$t('create.form.description')"
+                    ></v-textarea>
+                    <v-combobox
+                      v-model="advert.tags"
+                      :items="advert.tags"
+                      :label="$t('create.form.tags')"
+                      chips
+                      clearable
+                      multiple
+                      small-chips
+                      hide-selected
+                      :rules="[rules.requiredList]"
+                      validate-on-blur
+                    >
+                      <template slot="selection" slot-scope="tag">
+                        <v-chip
+                          label
+                          color="pink"
+                          text-color="white"
+                          :selected="tag.selected"
+                          close
+                          @input="removeTag(tag.item)"
+                        >
+                          <v-icon color="white" left>label</v-icon>
+                          {{ tag.item }}
+                        </v-chip>
+                      </template>
+                    </v-combobox>
+                    <v-combobox
+                      v-model="advert.requirements"
+                      :items="advert.requirements"
+                      :label="$t('create.form.requirements')"
+                      chips
+                      clearable
+                      multiple
+                      small-chips
+                      hide-selected
+                      :rules="[rules.requiredList]"
+                      validate-on-blur
+                    >
+                      <template slot="selection" slot-scope="requirement">
+                        <div class="mr-4">
+                          <v-icon>check_box</v-icon>
+                          {{ requirement.item }}
+                          <v-icon @click="removeRequirement(requirement.item)">close</v-icon>
+                          <br />
+                        </div>
 
+                      </template>
+                    </v-combobox>
+                    <v-divider class="mt-5"></v-divider>
+                    <v-subheader>{{ $t('create.form.options') }}</v-subheader>
+                    <div>
+                      <uploader></uploader>
+                    </div>
+                  </v-flex>
+                </v-layout>
+              </v-container>
+            </v-form>
           </v-card>
           <v-btn color="primary" @click="step = 2">{{ $t('generics.continue') }}</v-btn>
           <v-btn flat @click="dialogQuit = true">{{ $t('generics.cancel') }}</v-btn>
@@ -47,18 +127,22 @@
 </template>
 
 <script>
-  // import AutocompleteGoogleplaceInput from '~/components/generics/AutocompleteGoogleplaceInput'
-  // import AutocompleteMapboxInput from '~/components/generics/AutocompleteMapboxInput'
-  // import EditableChipsList from '~/components/generics/EditableChipsList'
-  // import _ from 'lodash'
+  import AutocompleteMapboxInput from '~/components/generics/AutocompleteMapboxInput'
   import Filters from '~/vendors/filters.js'
+  import Uploader from '~/components/generics/Uploader'
+
   export default {
     middleware: 'auth',
     filters: Filters,
+    components: {
+      AutocompleteMapboxInput,
+      Uploader
+    },
     data () {
       return {
         dialogQuit: false,
         step: 1,
+        valid: false,
         advert: {
           title: '',
           description: '',
@@ -71,7 +155,22 @@
             lon: ''
           },
           is_internal_private: false
-        }
+        },
+        rules: {
+          required: (value) => !!value || this.$t('generics.required'),
+          requiredList: (value) => value.length > 0 || this.$t('generics.required')
+        },
+        myFiles: []
+      }
+    },
+    methods: {
+      removeTag (item) {
+        this.advert.tags.splice(this.advert.tags.indexOf(item), 1)
+        this.advert.tags = [...this.advert.tags]
+      },
+      removeRequirement (item) {
+        this.advert.requirements.splice(this.advert.requirements.indexOf(item), 1)
+        this.advert.requirements = [...this.advert.requirements]
       }
     }
   }

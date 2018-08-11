@@ -8,7 +8,7 @@
     :items="mapBoxResponse"
     :search-input.sync="search"
     v-model="select"
-    prepend-icon="place"
+    :prepend-icon="!noicon ? 'place' : ''"
     :label="$t('home.search.place')"
     required
     flat
@@ -47,6 +47,10 @@
     props: {
       place: {
         type: Object
+      },
+      noicon: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
