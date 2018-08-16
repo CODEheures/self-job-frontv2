@@ -50,18 +50,16 @@
       }
     },
     methods: {
-      showQuiz () {
-        this.$root.$emit('xhr', true)
-        Api.showQuiz(this.$route.params.id)
-          .then((response) => {
-            this.questions = response.data
-          })
-          .catch(() => {
-            this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
-          })
-          .then(() => {
-            this.$root.$emit('xhr', false)
-          })
+      async showQuiz () {
+        try {
+          this.$root.$emit('xhr', true)
+          let response = await Api.showQuiz(this.$route.params.id)
+          this.questions = response.data
+        } catch (e) {
+          this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
+        } finally {
+          this.$root.$emit('xhr', false)
+        }
       },
       testQuizValidity () {
         let answersNotUndefined = _.filter(this.answers, function (v) { return v !== undefined })

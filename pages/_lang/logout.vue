@@ -34,23 +34,24 @@
       }
     },
     methods: {
-      logout () {
-        this.$root.$emit('xhr', true)
+      async logout () {
         let interval = setInterval(() => {
           this.compteur++
         }, 1000)
-        Api.logout(this.$store.state.user.token)
-          .then()
-          .catch()
-          .then(() => {
-            clearInterval(interval)
-            this.$root.$emit('displaySnack', this.$t('logout.isLogout'))
-            document.cookie = process.env.tokenCookieName + this.$store.state.user.token + '; expires=' + moment().subtract(1, 'days').toDate() + '; path=/'
-            setTimeout(() => {
-              this.$router.push(this.$options.filters.routeI18nReformat({name: 'lang', params: {lang: this.$store.state.locale}}))
-            }, 1000)
-            this.$root.$emit('xhr', false)
-          })
+        try {
+          this.$root.$emit('xhr', true)
+          await Api.logout(this.$store.state.user.token)
+        } catch (error) {
+          //
+        } finally {
+          clearInterval(interval)
+          this.$root.$emit('displaySnack', this.$t('logout.isLogout'))
+          document.cookie = process.env.tokenCookieName + this.$store.state.user.token + '; expires=' + moment().subtract(1, 'days').toDate() + '; path=/'
+          setTimeout(() => {
+            this.$router.push(this.$options.filters.routeI18nReformat({name: 'lang', params: {lang: this.$store.state.locale}}))
+          }, 1000)
+          this.$root.$emit('xhr', false)
+        }
       }
     }
   }

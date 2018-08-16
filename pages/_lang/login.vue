@@ -62,32 +62,30 @@
       }
     },
     methods: {
-      login () {
-        this.$root.$emit('xhr', true)
-        Api.login(this.email, this.password, this.$store.state.locale)
-          .then((response) => {
-            let tokenCookie = encodeURIComponent(response.data.access_token)
-            document.cookie = process.env.tokenCookieName + tokenCookie + '; max-age=' + response.data.expires_in + '; path=/'
-            if ('redirectAfterLoginSuccess' in this.$route.query) {
-              this.$router.push(this.$options.filters.routeI18nReformat({
-                name: this.$route.query.redirectAfterLoginSuccess.name,
-                params: this.$route.query.redirectAfterLoginSuccess.params,
-                query: this.$route.query.redirectAfterLoginSuccess.query
-              }))
-            } else {
-              this.$router.push(this.$options.filters.routeI18nReformat({name: 'lang-adverts-mines', params: {lang: this.$store.state.locale}}))
-            }
-          })
-          .catch((error) => {
-            if (!!error.response && error.response.status === 401) {
-              this.$root.$emit('displaySnack', this.$t('login.invalidCredentials'))
-            } else {
-              this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
-            }
-          })
-          .then(() => {
-            this.$root.$emit('xhr', false)
-          })
+      async login () {
+        try {
+          this.$root.$emit('xhr', true)
+          let response = await Api.login(this.email, this.password, this.$store.state.locale)
+          let tokenCookie = encodeURIComponent(response.data.access_token)
+          document.cookie = process.env.tokenCookieName + tokenCookie + '; max-age=' + response.data.expires_in + '; path=/'
+          if ('redirectAfterLoginSuccess' in this.$route.query) {
+            this.$router.push(this.$options.filters.routeI18nReformat({
+              name: this.$route.query.redirectAfterLoginSuccess.name,
+              params: this.$route.query.redirectAfterLoginSuccess.params,
+              query: this.$route.query.redirectAfterLoginSuccess.query
+            }))
+          } else {
+            this.$router.push(this.$options.filters.routeI18nReformat({name: 'lang-adverts-mines', params: {lang: this.$store.state.locale}}))
+          }
+        } catch (error) {
+          if (!!error.response && error.response.status === 401) {
+            this.$root.$emit('displaySnack', this.$t('login.invalidCredentials'))
+          } else {
+            this.$root.$emit('displaySnack', this.$t('home.search.errorApi'))
+          }
+        } finally {
+          this.$root.$emit('xhr', false)
+        }
       }
     }
   }
