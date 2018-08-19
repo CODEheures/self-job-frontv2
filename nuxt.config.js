@@ -106,7 +106,7 @@ module.exports = {
     api: {
       href_client: process.env.isDev === 'true' ? 'http://api.selfjob.test/api' : 'https://api-selfjob.codeheures.fr/api',
       href_server: 'http://api/api',
-      socketIo: process.env.isDev === 'true' ? 'http://echo.selfjob.test' : 'https://echo-selfjob.codeheures.com'
+      socketIo: process.env.isDev === 'true' ? 'http://echo.selfjob.test' : 'https://echo-selfjob.codeheures.fr'
     },
     fallbackLocale: 'fr',
     googleMapApiKey: process.env.isDev === 'true' ? '' : 'AIzaSyB6YONdutLGDWC70gK9f3VZp_3_eIE7Alw',
