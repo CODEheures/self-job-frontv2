@@ -104,7 +104,7 @@ module.exports = {
    */
   env: {
     api: {
-      href_client: process.env.isDev === 'true' ? 'http://api.selfjob.test/api' : 'https://api-selfjob.codeheures.com/api',
+      href_client: process.env.isDev === 'true' ? 'http://api.selfjob.test/api' : 'https://api-selfjob.codeheures.fr/api',
       href_server: 'http://api/api',
       socketIo: process.env.isDev === 'true' ? 'http://echo.selfjob.test' : 'https://echo-selfjob.codeheures.com'
     },
